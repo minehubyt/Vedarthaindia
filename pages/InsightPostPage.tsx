@@ -33,10 +33,10 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   return (
     <div className="bg-white min-h-screen">
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-deloitte-green z-[300] origin-left" style={{ scaleX }} />
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#86BC25] z-[300] origin-left" style={{ scaleX }} />
 
       {/* Hero Header Section */}
-      <section className="relative min-h-[60vh] flex items-end bg-black text-white overflow-hidden py-20">
+      <section className="relative min-h-[60vh] flex items-end bg-black text-white overflow-hidden py-16">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2000" 
@@ -50,13 +50,13 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           <button 
             type="button"
             onClick={onBack}
-            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black mb-10 group"
+            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black mb-8 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             <span>Back to Insights Hub</span>
           </button>
 
-          <nav className="flex items-center space-x-3 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">
+          <nav className="flex items-center space-x-3 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">
             <span className="hover:text-white cursor-pointer transition-colors">Our Thinking</span>
             <span className="text-gray-600">/</span>
             <span className="text-white">Tech Trends 2025</span>
@@ -66,20 +66,19 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl"
+            className="max-w-4xl"
           >
-            <h1 className="text-[clamp(2rem,6vw,4.5rem)] font-black leading-[1.1] tracking-tight mb-10">
+            <h1 className="text-[clamp(1.75rem,5.5vw,4.5rem)] font-black leading-[1.1] tracking-tight mb-10">
               Tech Trends 2025: <br /> Seven trends that matter.
             </h1>
             
             <div className="flex flex-wrap items-center gap-8 text-[10px]">
               <div className="flex items-center space-x-3 text-gray-400">
-                <Clock size={16} className="text-deloitte-green" />
+                <Clock size={16} className="text-[#86BC25]" />
                 <span className="font-black uppercase tracking-widest">15 Min Read</span>
               </div>
-              <div className="hidden sm:block text-gray-600">|</div>
               <div className="flex items-center space-x-4">
-                <button type="button" className="flex items-center space-x-2 bg-deloitte-green text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all shadow-xl">
+                <button type="button" className="flex items-center space-x-2 bg-[#86BC25] text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all shadow-xl">
                    <Download size={14} />
                    <span>Download Report</span>
                 </button>
@@ -110,7 +109,7 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
               >
                 {section.label}
                 {activeSection === section.id && (
-                  <motion.div layoutId="postActive" className="absolute -bottom-1 left-0 right-0 h-[2px] bg-deloitte-green" />
+                  <motion.div layoutId="postActive" className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#86BC25]" />
                 )}
               </button>
             ))}
@@ -123,39 +122,39 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       </div>
 
       {/* Article Content Layout */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
-          <div className="flex flex-col lg:flex-row gap-20">
+          <div className="flex flex-col lg:flex-row gap-16">
             <div className="flex-1 lg:max-w-4xl space-y-16">
               <div id="overview" className="scroll-mt-40">
-                <p className="text-[clamp(1.4rem,3vw,2rem)] font-light leading-relaxed text-black mb-10 tracking-tight">
-                  In 2025, we see a shift from generative AI experimentation to a state of <span className="text-deloitte-green font-black">applied intelligence</span>—where autonomous agents work alongside human talent to redefine productivity.
+                <p className="text-[clamp(1.2rem,2.5vw,1.8rem)] font-light leading-relaxed text-black mb-10 tracking-tight">
+                  In 2025, we see a shift from generative AI experimentation to a state of <span className="text-[#86BC25] font-black">applied intelligence</span>—where autonomous agents work alongside human talent.
                 </p>
-                <div className="prose prose-lg max-w-none text-gray-700 font-light leading-relaxed space-y-8">
-                  <p className="text-[clamp(1rem,1.2vw,1.2rem)]">
-                    Across industries, the promise of new technology is being balanced by the weight of technical debt and the urgency of cybersecurity. This year's report explores seven trends that represent the convergence of pioneering hardware and sophisticated cognitive models.
+                <div className="prose prose-lg max-w-none text-gray-700 font-light leading-relaxed space-y-6">
+                  <p className="text-base md:text-lg">
+                    Across industries, the promise of new technology is being balanced by the weight of technical debt and the urgency of cybersecurity.
                   </p>
                 </div>
               </div>
 
-              <div id="seven-trends" className="scroll-mt-40 space-y-12">
+              <div id="seven-trends" className="scroll-mt-40 space-y-10">
                 <div className="flex items-center space-x-4">
-                  <div className="h-10 w-2 bg-deloitte-green" />
-                  <h2 className="text-[clamp(1.8rem,4vw,2.8rem)] font-black tracking-tight uppercase">The Seven Trends</h2>
+                  <div className="h-8 w-1.5 bg-[#86BC25]" />
+                  <h2 className="text-2xl md:text-4xl font-black tracking-tight uppercase">The Seven Trends</h2>
                 </div>
                 
-                <div className="space-y-16">
+                <div className="space-y-12">
                   {[
-                    { num: '01', title: 'Agentic Workflows', desc: 'Moving from prompting to partnering. AI agents now manage complex multi-step processes with minimal oversight, creating a new layer of organizational intelligence.' },
-                    { num: '02', title: 'The Quantum Reality', desc: 'Commercial advantage is finally within reach for specific optimization problems. We explore how early adopters are securing a 5-year lead in financial and material sciences.' }
+                    { num: '01', title: 'Agentic Workflows', desc: 'Moving from prompting to partnering. AI agents now manage complex processes with minimal oversight.' },
+                    { num: '02', title: 'The Quantum Reality', desc: 'Commercial advantage is finally within reach for specific optimization problems.' }
                   ].map((trend) => (
-                    <div key={trend.num} className="group flex flex-col sm:flex-row gap-8 items-start">
-                      <span className="text-[clamp(3rem,6vw,5rem)] font-black text-gray-100 group-hover:text-deloitte-green transition-colors duration-300 leading-none">
+                    <div key={trend.num} className="group flex flex-col sm:flex-row gap-6 items-start">
+                      <span className="text-4xl md:text-7xl font-black text-gray-100 group-hover:text-[#86BC25] transition-colors leading-none">
                         {trend.num}
                       </span>
                       <div className="pt-2">
-                        <h3 className="text-2xl font-bold mb-4 tracking-tight">{trend.title}</h3>
-                        <p className="text-gray-600 leading-relaxed text-[clamp(1rem,1.1vw,1.15rem)] font-light">
+                        <h3 className="text-xl font-bold mb-3 tracking-tight">{trend.title}</h3>
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base font-light">
                           {trend.desc}
                         </p>
                       </div>
@@ -165,30 +164,11 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
               </div>
             </div>
 
-            <aside className="lg:w-[350px] space-y-16">
-              <div className="space-y-8">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-deloitte-green">Authors</h4>
-                <div className="space-y-6">
-                  {[
-                    { name: 'Bill Briggs', role: 'Global CTO', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200' },
-                  ].map((author) => (
-                    <div key={author.name} className="flex items-center space-x-4">
-                      <img src={author.img} alt={author.name} className="w-16 h-16 rounded-full grayscale shadow-sm" />
-                      <div>
-                        <h5 className="font-bold text-sm">{author.name}</h5>
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{author.role}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-black text-white p-10 rounded-sm shadow-xl">
-                <h4 className="text-[10px] font-black uppercase tracking-widest mb-8 text-deloitte-green">Executive Summary</h4>
-                <div className="space-y-8">
-                  <p className="text-sm font-light leading-relaxed opacity-80 italic">"The future isn't about replacement, but radical orchestration."</p>
-                </div>
-                <button type="button" className="mt-10 w-full bg-white text-black py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-deloitte-green transition-all">
+            <aside className="lg:w-[350px] space-y-12">
+              <div className="bg-black text-white p-10 rounded-sm">
+                <h4 className="text-[10px] font-black uppercase tracking-widest mb-8 text-[#86BC25]">Executive Summary</h4>
+                <p className="text-sm font-light leading-relaxed opacity-80 italic">"The future isn't about replacement, but radical orchestration."</p>
+                <button type="button" className="mt-10 w-full bg-white text-black py-4 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-[#86BC25] transition-all">
                   Request Private Briefing
                 </button>
               </div>

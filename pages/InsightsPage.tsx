@@ -90,7 +90,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
   return (
     <div className="bg-white min-h-screen">
       {/* Immersive Insights Hero */}
-      <section className="relative h-[80vh] w-full bg-black overflow-hidden flex items-end pb-16">
+      <section className="relative h-[70vh] w-full bg-black overflow-hidden flex items-end pb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src={INSIGHTS_ARTICLES[0].image} 
@@ -102,30 +102,30 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
         
         <div className="container mx-auto px-6 lg:px-[8vw] relative z-10 max-w-[1800px]">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <span className="inline-block bg-deloitte-green text-black text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1 mb-6">
+            <span className="inline-block bg-[#86BC25] text-black text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1 mb-6">
               {INSIGHTS_ARTICLES[0].type}
             </span>
-            <h1 className="text-white text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[0.95] mb-8 tracking-tighter">
+            <h1 className="text-white text-[clamp(1.75rem,5.5vw,4rem)] font-black leading-[1.1] mb-6 tracking-tight">
               {INSIGHTS_ARTICLES[0].title}
             </h1>
-            <p className="text-gray-300 text-xl md:text-2xl font-light mb-10 max-w-2xl leading-relaxed">
+            <p className="text-gray-300 text-[clamp(1rem,1.2vw,1.25rem)] font-light mb-8 max-w-2xl leading-relaxed">
               {INSIGHTS_ARTICLES[0].description}
             </p>
             <div className="flex flex-wrap gap-4">
               <button 
                 type="button"
                 onClick={onArticleClick}
-                className="bg-white text-black px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-deloitte-green transition-all shadow-2xl flex items-center space-x-3"
+                className="bg-white text-black px-8 py-3.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-[#86BC25] transition-all shadow-xl flex items-center space-x-3"
               >
                 <span>Explore Trend Report</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </button>
-              <button type="button" className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
+              <button type="button" className="border border-white/30 text-white px-8 py-3.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">
                 Watch the Video
               </button>
             </div>
@@ -134,16 +134,16 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
       </section>
 
       {/* Content Header */}
-      <section className="pt-12 pb-6">
+      <section className="pt-12 pb-4">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
-          <div className="flex items-end justify-between mb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <div>
-              <span className="text-deloitte-green font-black uppercase tracking-[0.4em] text-[10px] mb-2 block">Current Perspectives</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Latest from Deloitte Insights</h2>
+              <span className="text-[#86BC25] font-black uppercase tracking-[0.4em] text-[10px] mb-2 block">Current Perspectives</span>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Latest from Deloitte Insights</h2>
             </div>
-            <div className="flex items-center space-x-6 pb-2">
+            <div className="flex items-center space-x-6">
               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Share Hub</span>
-              <div className="flex space-x-3">
+              <div className="flex space-x-4">
                 <Share2 size={18} className="text-gray-400 cursor-pointer hover:text-black transition-colors" />
                 <Mail size={18} className="text-gray-400 cursor-pointer hover:text-black transition-colors" />
               </div>
@@ -158,24 +158,24 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
         style={{ top: isHeaderVisible ? '70px' : '0px' }}
       >
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px] flex items-center justify-between">
-          <div className="flex items-center space-x-8 overflow-x-auto no-scrollbar py-8 scroll-smooth pr-10">
+          <div className="flex items-center space-x-8 overflow-x-auto no-scrollbar py-6 pr-10">
             {TOPICS.map((topic) => (
               <button
                 key={topic}
                 type="button"
                 onClick={() => setActiveTopic(topic)}
-                className={`whitespace-nowrap text-[11px] font-black uppercase tracking-[0.2em] transition-all relative py-1 border-none bg-transparent appearance-none outline-none ${
-                  activeTopic === topic ? 'text-deloitte-green' : 'text-gray-400 hover:text-black'
+                className={`whitespace-nowrap text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-1 ${
+                  activeTopic === topic ? 'text-[#86BC25]' : 'text-gray-400 hover:text-black'
                 }`}
               >
                 {topic}
                 {activeTopic === topic && (
-                  <motion.div layoutId="activeTopic" className="absolute -bottom-1 left-0 right-0 h-1 bg-deloitte-green" />
+                  <motion.div layoutId="activeTopic" className="absolute -bottom-1 left-0 right-0 h-1 bg-[#86BC25]" />
                 )}
               </button>
             ))}
           </div>
-          <div className="hidden lg:flex items-center space-x-6 border-l border-gray-100 pl-8 ml-4 h-full py-8">
+          <div className="hidden lg:flex items-center space-x-6 border-l border-gray-100 pl-8 ml-4 h-full py-6">
             <Search size={18} className="text-gray-400 cursor-pointer hover:text-black transition-colors" />
             <Filter size={18} className="text-gray-400 cursor-pointer hover:text-black transition-colors" />
           </div>
@@ -183,9 +183,8 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
       </div>
 
       {/* Insights Content Grid */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
-          {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {INSIGHTS_ARTICLES.slice(1).map((article, index) => (
               <motion.div
@@ -195,37 +194,37 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={onArticleClick}
-                className="group cursor-pointer flex flex-col h-full bg-white border border-gray-50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 rounded-sm overflow-hidden"
+                className="group cursor-pointer flex flex-col h-full bg-white border border-gray-50 hover:shadow-2xl transition-all duration-500 rounded-sm overflow-hidden"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src={article.image} 
                     alt={article.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   {article.icon && (
-                    <div className="absolute top-6 right-6 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-black shadow-lg">
+                    <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-black shadow-lg">
                       {article.icon}
                     </div>
                   )}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-deloitte-green scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-[#86BC25] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                 </div>
                 
-                <div className="p-10 flex flex-col flex-1">
+                <div className="p-8 flex flex-col flex-1">
                   <div className="flex items-center space-x-3 mb-4">
-                    <span className="text-deloitte-green text-[10px] font-black uppercase tracking-widest">{article.type}</span>
+                    <span className="text-[#86BC25] text-[10px] font-black uppercase tracking-widest">{article.type}</span>
                     <span className="w-1 h-1 bg-gray-200 rounded-full" />
                     <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">{article.tag}</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-6 group-hover:text-deloitte-green transition-colors leading-tight">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-[#86BC25] transition-colors leading-tight">
                     {article.title}
                   </h3>
-                  <p className="text-gray-500 font-light leading-relaxed mb-8 flex-1">
+                  <p className="text-gray-500 font-light leading-relaxed mb-6 flex-1 text-sm">
                     {article.description}
                   </p>
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                    <span className="text-xs font-black uppercase tracking-widest">Explore</span>
-                    <ChevronRight size={18} className="group-hover:translate-x-2 transition-transform duration-300" />
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span className="text-[10px] font-black uppercase tracking-widest">Explore</span>
+                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </motion.div>
@@ -236,76 +235,32 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="mt-24 p-16 bg-black text-white rounded-sm flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden"
+            className="mt-20 p-12 bg-black text-white rounded-sm flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-deloitte-green/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#86BC25]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
             
-            <div className="relative z-10">
-              <div className="flex items-center space-x-4 mb-6">
-                <Bell size={24} className="text-deloitte-green" />
-                <span className="text-xs font-black uppercase tracking-[0.4em] text-deloitte-green">Stay Ahead</span>
+            <div className="relative z-10 flex-1">
+              <div className="flex items-center space-x-4 mb-4">
+                <Bell size={20} className="text-[#86BC25]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#86BC25]">Stay Ahead</span>
               </div>
-              <h2 className="text-4xl font-bold mb-4 tracking-tight">Subscribe to Deloitte Insights</h2>
-              <p className="text-gray-400 text-lg font-light max-w-xl leading-relaxed">
-                Receive the latest thinking from our global experts directly in your inbox. Customize your preferences for industries and topics.
+              <h2 className="text-3xl font-bold mb-3 tracking-tight">Subscribe to Deloitte Insights</h2>
+              <p className="text-gray-400 text-base font-light max-w-xl leading-relaxed">
+                Receive the latest thinking from our global experts directly in your inbox.
               </p>
             </div>
 
-            <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4 relative z-10">
+            <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-4 relative z-10">
               <input 
                 type="email" 
                 placeholder="Business Email" 
-                className="bg-white/10 border border-white/20 px-8 py-4 rounded-full text-white outline-none focus:border-deloitte-green transition-colors min-w-[300px]"
+                className="bg-white/10 border border-white/20 px-6 py-3.5 rounded-full text-white outline-none focus:border-[#86BC25] transition-colors min-w-[280px] text-sm"
               />
-              <button type="button" className="bg-deloitte-green text-black px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all">
+              <button type="button" className="bg-[#86BC25] text-black px-8 py-3.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:brightness-110 transition-all">
                 Subscribe
               </button>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Podcast Section */}
-      <section className="py-24 bg-gray-50 overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
-            <div className="lg:w-1/2">
-              <div className="relative group">
-                <div className="aspect-square bg-black overflow-hidden rounded-sm shadow-2xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Podcast cover" 
-                    className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.button 
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:bg-deloitte-green transition-colors"
-                    >
-                      <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-black border-b-[12px] border-b-transparent ml-2" />
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/2">
-              <span className="text-deloitte-green font-black uppercase tracking-[0.4em] text-[10px] mb-8 block">Now Playing</span>
-              <h2 className="text-5xl font-black mb-8 leading-tight tracking-tighter">The Deloitte Insights <br /> Podcast Series</h2>
-              <p className="text-xl text-gray-600 font-light mb-12 leading-relaxed">
-                Join our editors as they interview the thinkers and leaders shaping tomorrow’s enterprise. From ESG to the Metaverse, we dive deep into the trends that matter.
-              </p>
-              <div className="flex flex-wrap gap-6">
-                <button type="button" className="flex items-center space-x-3 bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-neutral-800 transition-all">
-                  <Headphones size={20} />
-                  <span>Listen on Spotify</span>
-                </button>
-                <button type="button" className="flex items-center space-x-3 border border-black/20 text-black px-8 py-4 rounded-full font-bold hover:bg-black hover:text-white transition-all">
-                  <span>View Episode Library</span>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>

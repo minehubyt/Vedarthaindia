@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SLIDES = [
   {
@@ -34,12 +34,6 @@ const SLIDES = [
 
 const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
-  const { scrollY } = useScroll();
-  
-  // Parallax: Hero sinks slightly and dims as content scrolls over it
-  const y = useTransform(scrollY, [0, 800], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 600], [1, 0.4]);
-  const scale = useTransform(scrollY, [0, 600], [1, 0.95]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -51,10 +45,7 @@ const Hero: React.FC = () => {
   const slide = SLIDES[current];
 
   return (
-    <motion.section 
-      style={{ opacity, scale }}
-      className="sticky top-0 h-screen w-full bg-black overflow-hidden flex flex-col justify-center"
-    >
+    <section className="sticky top-0 h-screen w-full bg-black overflow-hidden flex flex-col justify-center">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -73,11 +64,8 @@ const Hero: React.FC = () => {
         </motion.div>
       </AnimatePresence>
 
-      <motion.div 
-        style={{ y }}
-        className="container mx-auto px-6 lg:px-[8vw] relative z-20 max-w-[1800px]"
-      >
-        <div className="max-w-5xl">
+      <div className="container mx-auto px-6 lg:px-[8vw] relative z-20 max-w-[1800px]">
+        <div className="max-w-4xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -86,25 +74,25 @@ const Hero: React.FC = () => {
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <span className="text-white text-[clamp(0.875rem,1.1vw,1rem)] font-bold mb-4 block tracking-widest opacity-90 uppercase">
+              <span className="text-white text-[clamp(0.75rem,1vw,0.9rem)] font-bold mb-4 block tracking-[0.2em] opacity-90 uppercase">
                 {slide.title}
               </span>
               
-              <h1 className="text-white text-[clamp(2rem,7vw,4.5rem)] font-black leading-[1.05] mb-10 tracking-tight">
+              <h1 className="text-white text-[clamp(1.75rem,6vw,4.5rem)] font-black leading-[1.1] mb-8 tracking-tight">
                 {slide.headline}
               </h1>
 
-              <p className="text-gray-300 text-[clamp(0.95rem,1.2vw,1.15rem)] leading-relaxed mb-12 max-w-xl font-light">
+              <p className="text-gray-300 text-[clamp(0.9rem,1.1vw,1.1rem)] leading-relaxed mb-10 max-w-xl font-light">
                 {slide.description}
               </p>
 
-              <button className={`${slide.ctaColor} hover:brightness-110 px-10 py-4 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-xl transform hover:-translate-y-1`}>
+              <button className={`${slide.ctaColor} hover:brightness-110 px-10 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-xl`}>
                 {slide.cta}
               </button>
             </motion.div>
           </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
 
       <div className="absolute bottom-12 left-6 lg:left-[8vw] z-30 flex items-center space-x-6">
         <div className="flex space-x-3">
@@ -112,22 +100,21 @@ const Hero: React.FC = () => {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className="group py-2 flex items-center"
+              className="group py-2"
             >
               <div className={`h-[3px] rounded-full transition-all duration-500 ${
-                current === i ? 'w-10 bg-[#86BC25]' : 'w-4 bg-white/30 group-hover:bg-white/60'
+                current === i ? 'w-10 bg-[#86BC25]' : 'w-4 bg-white/20 group-hover:bg-white/40'
               }`} />
             </button>
           ))}
         </div>
-        <div className="hidden sm:flex items-center space-x-3">
-          <div className="h-[1px] w-6 bg-white/20 rounded-full" />
-          <span className="text-white/50 text-[10px] font-black tracking-[0.4em] uppercase">
+        <div className="hidden sm:block">
+          <span className="text-white/40 text-[10px] font-black tracking-[0.3em] uppercase">
             0{current + 1} / 0{SLIDES.length}
           </span>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

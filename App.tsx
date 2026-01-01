@@ -24,6 +24,7 @@ const App: React.FC = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // Ensure styles are loaded and app is hydrated for smooth animations
     const timer = setTimeout(() => setIsReady(true), 100);
     return () => clearTimeout(timer);
   }, []);
@@ -68,27 +69,29 @@ const App: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* The stack: Hero is sticky/fixed at the bottom, others scroll over */}
-            <main className="relative">
-              <div className="relative z-0">
+            <div className="relative">
+              <div className="sticky top-0 z-10 h-screen overflow-hidden">
                 <Hero />
               </div>
-              <div className="relative z-10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+              <div className="relative z-20 shadow-[0_-50px_100px_rgba(0,0,0,0.9)]">
                 <RevealVideoSection />
-                <FeaturedContent onNavigateToInsights={() => navigateTo('insights')} />
-                <ServicesSection />
-                <CareerSlideshow />
               </div>
+            </div>
+            <main className="relative z-30 bg-white">
+              {/* User requested order: Our Thinking -> Our Work -> Career */}
+              <FeaturedContent onNavigateToInsights={() => navigateTo('insights')} />
+              <ServicesSection />
+              <CareerSlideshow />
             </main>
           </motion.div>
         ) : (
           <motion.main
             key={currentPage}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }}
-            className="relative z-[20] pt-[70px] min-h-[80vh] bg-white"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-30 min-h-[80vh]"
           >
             {currentPage === 'legal' && <LegalPage />}
             {currentPage === 'purpose-values' && <PurposeValuesPage />}
