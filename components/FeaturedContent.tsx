@@ -5,7 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import { FEATURED_ARTICLES } from '../constants';
 import StickyHeader from './StickyHeader';
 
-const FeaturedContent: React.FC = () => {
+interface FeaturedContentProps {
+  onNavigateToInsights?: () => void;
+}
+
+const FeaturedContent: React.FC<FeaturedContentProps> = ({ onNavigateToInsights }) => {
   return (
     <section className="bg-gray-50 border-b border-gray-200">
       <StickyHeader title="Our thinking" />
@@ -16,7 +20,10 @@ const FeaturedContent: React.FC = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-black">Latest Insights</h2>
               <div className="h-1.5 w-24 bg-deloitte-green" />
             </div>
-            <button className="flex items-center space-x-2 text-black font-bold hover:text-deloitte-green transition-colors group">
+            <button 
+              onClick={onNavigateToInsights}
+              className="flex items-center space-x-2 text-black font-bold hover:text-deloitte-green transition-colors group"
+            >
               <span>View all perspectives</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -30,6 +37,7 @@ const FeaturedContent: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
+                onClick={onNavigateToInsights}
                 className="group cursor-pointer bg-white overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border-b-4 border-transparent hover:border-deloitte-green rounded-sm"
               >
                 <div className="relative h-64 overflow-hidden">

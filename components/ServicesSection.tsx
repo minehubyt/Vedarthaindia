@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ShieldCheck, Lightbulb, AlertTriangle, Briefcase, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Lightbulb, AlertTriangle, Briefcase, ChevronRight } from 'lucide-react';
 import { SERVICES } from '../constants';
 import StickyHeader from './StickyHeader';
 
@@ -24,7 +24,7 @@ const ServicesSection: React.FC = () => {
   const bgTextY = useTransform(scrollYProgress, [0.4, 0.7], [0, -100]);
 
   return (
-    <section className="bg-white relative overflow-hidden">
+    <section className="bg-white relative">
       <StickyHeader title="Our work" bgColor="bg-black" />
       
       {/* Background Cinematic Text */}
@@ -37,7 +37,7 @@ const ServicesSection: React.FC = () => {
         </span>
       </motion.div>
 
-      <div className="py-[clamp(4rem,10vw,8rem)] relative z-10">
+      <div className="py-[clamp(4rem,10vw,8rem)] relative z-10 overflow-hidden">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
           
           <div className="flex flex-col lg:flex-row gap-24 mb-24 items-start">
@@ -75,7 +75,6 @@ const ServicesSection: React.FC = () => {
                         <span className="text-gray-300 font-black text-2xl group-hover:text-deloitte-green transition-colors">0{i+1}</span>
                         <h3 className="text-3xl font-bold tracking-tight group-hover:translate-x-4 transition-transform duration-500">{item}</h3>
                       </div>
-                      <ArrowUpRight className="text-gray-200 group-hover:text-deloitte-green group-hover:rotate-45 transition-all duration-500" size={32} />
                     </motion.div>
                   ))}
                </div>
@@ -148,7 +147,6 @@ const ServicesSection: React.FC = () => {
             </div>
             <button className="whitespace-nowrap bg-deloitte-green text-black px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all flex items-center space-x-4 group-hover:scale-105 duration-300">
               <span>Connect with an expert</span>
-              <ArrowUpRight size={20} />
             </button>
           </motion.div>
         </div>

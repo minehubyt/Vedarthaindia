@@ -14,8 +14,10 @@ import PurposeValuesPage from './pages/PurposeValuesPage';
 import ContactUsPage from './pages/ContactUsPage';
 import RFPPage from './pages/RFPPage';
 import AboutPage from './pages/AboutPage';
+import InsightsPage from './pages/InsightsPage';
+import InsightPostPage from './pages/InsightPostPage';
 
-type Page = 'home' | 'legal' | 'purpose-values' | 'contact-us' | 'rfp' | 'about';
+type Page = 'home' | 'legal' | 'purpose-values' | 'contact-us' | 'rfp' | 'about' | 'insights' | 'insight-post';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -36,7 +38,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.hash.replace('#', '') as Page;
-      const validPages: Page[] = ['home', 'legal', 'purpose-values', 'contact-us', 'rfp', 'about'];
+      const validPages: Page[] = ['home', 'legal', 'purpose-values', 'contact-us', 'rfp', 'about', 'insights', 'insight-post'];
       if (validPages.includes(path)) {
         setCurrentPage(path);
       } else {
@@ -76,10 +78,10 @@ const App: React.FC = () => {
               </div>
             </div>
             <main className="relative z-30 bg-white">
-              {/* User requested order: Career -> Our Work -> Our Thinking */}
-              <CareerSlideshow />
+              {/* User requested order: Our Thinking -> Our Work -> Career */}
+              <FeaturedContent onNavigateToInsights={() => navigateTo('insights')} />
               <ServicesSection />
-              <FeaturedContent />
+              <CareerSlideshow />
             </main>
           </motion.div>
         ) : (
@@ -96,6 +98,8 @@ const App: React.FC = () => {
             {currentPage === 'contact-us' && <ContactUsPage />}
             {currentPage === 'rfp' && <RFPPage />}
             {currentPage === 'about' && <AboutPage />}
+            {currentPage === 'insights' && <InsightsPage onArticleClick={() => navigateTo('insight-post')} />}
+            {currentPage === 'insight-post' && <InsightPostPage onBack={() => navigateTo('insights')} />}
           </motion.main>
         )}
       </AnimatePresence>
