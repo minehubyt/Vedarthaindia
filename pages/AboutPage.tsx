@@ -23,10 +23,10 @@ const AboutPage: React.FC = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-4xl"
             >
-              <h1 className="text-[clamp(3.5rem,8vw,7.5rem)] font-black leading-[0.9] tracking-tighter mb-8">
+              <h1 className="text-[clamp(3.5rem,9.5vw,7.5rem)] font-black leading-[0.85] tracking-tighter mb-8 uppercase">
                 About <br /> Deloitte
               </h1>
-              <p className="text-2xl md:text-3xl font-light text-gray-400 tracking-tight">
+              <p className="text-[clamp(1.5rem,3.5vw,2.8rem)] font-light text-gray-400 tracking-tight leading-none">
                 Purpose-led. Impact-driven.
               </p>
             </motion.div>
@@ -50,13 +50,13 @@ const AboutPage: React.FC = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
           <div className="max-w-4xl">
-            <h2 className="text-[32px] md:text-[48px] font-bold leading-tight mb-12 tracking-tight">
+            <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight mb-12 tracking-tight">
               At Deloitte, we believe we can make a difference.
             </h2>
-            <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed mb-16">
+            <p className="text-[clamp(1.1rem,1.8vw,1.6rem)] text-gray-600 font-light leading-relaxed mb-16">
               Deloitte is a leading global provider of audit and assurance, consulting, financial advisory, risk advisory, tax, and related services. With more than 175 years of hard work and commitment to making a real difference, our organization has grown in scale and diversity—yet our shared culture remains at the heart of everything we do.
             </p>
-            <div className="h-1.5 w-24 bg-[#86BC25]" />
+            <div className="h-2 w-24 bg-[#86BC25]" />
           </div>
         </div>
       </section>
@@ -69,9 +69,9 @@ const AboutPage: React.FC = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute bottom-16 left-6 lg:left-[8vw] max-w-2xl text-white">
-          <h3 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">Making an impact that matters.</h3>
-          <p className="text-lg md:text-xl font-light opacity-90">Our purpose is the guiding star for all our decisions.</p>
+        <div className="absolute bottom-16 left-6 lg:left-[8vw] max-w-3xl text-white">
+          <h3 className="text-[clamp(2.5rem,6.5vw,5rem)] font-black mb-6 tracking-tighter leading-[0.9] uppercase">Making an impact that matters.</h3>
+          <p className="text-[clamp(1rem,1.8vw,1.4rem)] font-light opacity-90">Our purpose is the guiding star for all our decisions.</p>
         </div>
       </section>
 
@@ -81,34 +81,34 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div className="space-y-12">
                <div className="flex items-start space-x-6">
-                 <div className="bg-black text-white p-4 rounded-full">
-                   <Globe size={28} />
+                 <div className="bg-black text-white p-5 rounded-full shrink-0">
+                   <Globe size={32} />
                  </div>
                  <div>
-                   <h4 className="text-2xl font-bold mb-4">Global Network</h4>
-                   <p className="text-gray-600 font-light leading-relaxed">
+                   <h4 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4">Global Network</h4>
+                   <p className="text-gray-600 font-light leading-relaxed text-lg">
                      Our network of member firms in more than 150 countries and territories serves four out of five Fortune Global 500® companies.
                    </p>
                  </div>
                </div>
                <div className="flex items-start space-x-6">
-                 <div className="bg-black text-white p-4 rounded-full">
-                   <Users size={28} />
+                 <div className="bg-black text-white p-5 rounded-full shrink-0">
+                   <Users size={32} />
                  </div>
                  <div>
-                   <h4 className="text-2xl font-bold mb-4">Diverse Talent</h4>
-                   <p className="text-gray-600 font-light leading-relaxed">
+                   <h4 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4">Diverse Talent</h4>
+                   <p className="text-gray-600 font-light leading-relaxed text-lg">
                      Approximately 457,000 professionals are committed to making an impact that matters.
                    </p>
                  </div>
                </div>
                <div className="flex items-start space-x-6">
-                 <div className="bg-black text-white p-4 rounded-full">
-                   <Target size={28} />
+                 <div className="bg-black text-white p-5 rounded-full shrink-0">
+                   <Target size={32} />
                  </div>
                  <div>
-                   <h4 className="text-2xl font-bold mb-4">Strategic Vision</h4>
-                   <p className="text-gray-600 font-light leading-relaxed">
+                   <h4 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4">Strategic Vision</h4>
+                   <p className="text-gray-600 font-light leading-relaxed text-lg">
                      Helping clients and communities navigate change and reach their goals through deep industry expertise.
                    </p>
                  </div>
@@ -116,11 +116,11 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="bg-white p-12 shadow-2xl rounded-sm border-t-8 border-[#86BC25] flex flex-col justify-center">
-              <h3 className="text-3xl font-bold mb-8 tracking-tight">How we're organized</h3>
-              <p className="text-gray-600 font-light leading-relaxed mb-10">
+              <h3 className="text-[clamp(1.5rem,3.5vw,2.8rem)] font-bold mb-8 tracking-tight leading-tight">How we're organized</h3>
+              <p className="text-gray-600 font-light leading-relaxed mb-10 text-lg">
                 Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited ("DTTL"), its global network of member firms, and their related entities. DTTL (also referred to as "Deloitte Global") does not provide services to clients.
               </p>
-              <button className="flex items-center text-[#86BC25] font-bold text-lg group">
+              <button className="flex items-center text-[#86BC25] font-black text-lg group uppercase tracking-widest">
                 Learn about our structure <ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </button>
             </div>
@@ -128,40 +128,15 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Our Values Section - Mini Grid */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
-          <h2 className="text-4xl font-bold mb-16 tracking-tight">Who we are is defined by what we believe</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: 'Purpose and values', desc: 'The core of our culture and decisions.' },
-              { title: 'Ethics and integrity', desc: 'Upholding the highest professional standards.' },
-              { title: 'Global impact report', desc: 'Measuring our contribution to the world.' },
-              { title: 'Leadership', desc: 'The individuals driving our global strategy.' }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -10 }}
-                className="p-10 bg-gray-50 border-b-4 border-transparent hover:border-[#86BC25] transition-all cursor-pointer"
-              >
-                <h4 className="text-xl font-bold mb-4">{item.title}</h4>
-                <p className="text-gray-500 font-light text-sm mb-6">{item.desc}</p>
-                <ChevronRight size={20} className="text-[#86BC25]" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action Section */}
       <section className="bg-black py-24 text-center">
         <div className="container mx-auto px-6">
-          <h2 className="text-white text-4xl md:text-6xl font-black mb-12 tracking-tighter">Ready to join our team?</h2>
-          <div className="flex flex-wrap justify-center gap-6">
-             <button className="bg-[#86BC25] text-black px-12 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all">
+          <h2 className="text-white text-[clamp(2.5rem,6.5vw,5rem)] font-black mb-12 tracking-tighter uppercase leading-none">Ready to join our team?</h2>
+          <div className="flex flex-wrap justify-center gap-8">
+             <button className="bg-[#86BC25] text-black px-14 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-xl">
                Explore Careers
              </button>
-             <button className="border border-white/20 text-white px-12 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+             <button className="border border-white/20 text-white px-14 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
                Contact Us
              </button>
           </div>
