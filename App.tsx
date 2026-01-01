@@ -76,9 +76,10 @@ const App: React.FC = () => {
               </div>
             </div>
             <main className="relative z-30 bg-white">
-              <FeaturedContent />
-              <ServicesSection />
+              {/* User requested order: Career -> Our Work -> Our Thinking */}
               <CareerSlideshow />
+              <ServicesSection />
+              <FeaturedContent />
             </main>
           </motion.div>
         ) : (
