@@ -8,7 +8,7 @@ const AIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [messages, setMessages] = useState<{ role: 'user' | 'ai' | 'system', text: string }[]>([
-    { role: 'ai', text: 'Welcome to Deloitte. I am your Insight Assistant. How can I help you navigate our perspectives today?' }
+    { role: 'ai', text: 'Welcome to Vedartha. I am your Insight Assistant. How can I help you navigate our perspectives today?' }
   ]);
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -61,7 +61,7 @@ const AIAssistant: React.FC = () => {
           >
             <div className="bg-black p-6 flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-[#86BC25] rounded-full flex items-center justify-center font-black text-sm">D</div>
+                <div className="w-10 h-10 bg-[#86BC25] rounded-full flex items-center justify-center font-black text-sm">V</div>
                 <div>
                   <h4 className="text-white font-bold text-sm tracking-tight">Insight Assistant</h4>
                   <div className="flex items-center space-x-2">

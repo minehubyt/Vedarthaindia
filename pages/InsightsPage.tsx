@@ -71,7 +71,6 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
   const [activeTopic, setActiveTopic] = useState('All Insights');
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
-  // Detect header visibility to adjust sticky top offset
   useEffect(() => {
     let lastScroll = 0;
     const handleScroll = () => {
@@ -139,7 +138,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <div>
               <span className="text-[#86BC25] font-black uppercase tracking-[0.4em] text-[10px] mb-2 block">Current Perspectives</span>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Latest from Deloitte Insights</h2>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Latest from Vedartha Insights</h2>
             </div>
             <div className="flex items-center space-x-6">
               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Share Hub</span>
@@ -244,7 +243,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
                 <Bell size={20} className="text-[#86BC25]" />
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#86BC25]">Stay Ahead</span>
               </div>
-              <h2 className="text-3xl font-bold mb-3 tracking-tight">Subscribe to Deloitte Insights</h2>
+              <h2 className="text-3xl font-bold mb-3 tracking-tight">Subscribe to Vedartha Insights</h2>
               <p className="text-gray-400 text-base font-light max-w-xl leading-relaxed">
                 Receive the latest thinking from our global experts directly in your inbox.
               </p>

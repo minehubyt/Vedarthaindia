@@ -26,7 +26,7 @@ const ContactUsPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for contacting Deloitte. We have received your message.');
+    alert('Thank you for contacting Vedartha. We have received your message.');
   };
 
   return (
@@ -74,7 +74,7 @@ const ContactUsPage: React.FC = () => {
             {/* Left Column: Form */}
             <div className="flex-1 max-w-4xl">
               <p className="text-[20px] text-gray-700 font-light mb-16 leading-relaxed">
-                Thank you for your interest in Deloitte. Please fill out the form below to help us direct your inquiry to the right department.
+                Thank you for your interest in Vedartha. Please fill out the form below to help us direct your inquiry to the right department.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-12">
@@ -239,9 +239,9 @@ const ContactUsPage: React.FC = () => {
             {/* Right Column: Sidebar */}
             <div className="lg:w-[400px] space-y-16">
               <div className="p-10 bg-gray-50 border-l-[6px] border-[#86BC25]">
-                <h4 className="text-[22px] font-bold mb-6">Deloitte India Offices</h4>
+                <h4 className="text-[22px] font-bold mb-6">Vedartha Offices</h4>
                 <p className="text-gray-600 font-light mb-8 leading-relaxed">
-                  With several offices across major cities in India, we are close to our clients and their needs.
+                  With several offices across major cities, we are close to our clients and their needs.
                 </p>
                 <button className="flex items-center text-[#86BC25] font-bold text-[15px] hover:translate-x-2 transition-transform">
                   Find our locations <ChevronRight className="ml-1" size={18} />
@@ -261,7 +261,7 @@ const ContactUsPage: React.FC = () => {
                   <div className="group cursor-pointer">
                     <h5 className="font-bold text-[16px] mb-2 group-hover:text-[#86BC25] transition-colors">Global office directory</h5>
                     <p className="text-sm text-gray-500 font-light leading-relaxed">
-                      Connect with Deloitte's global network through our worldwide office directory.
+                      Connect with Vedartha's global network through our worldwide office directory.
                     </p>
                   </div>
                 </div>

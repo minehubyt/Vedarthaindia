@@ -7,13 +7,13 @@ import StickyHeader from './StickyHeader';
 const CAREER_SLIDES = [
   {
     title: "Join our team of pioneers.",
-    description: "At Deloitte, you'll have the opportunity to work with some of the world's most innovative organizations and help them solve their most complex problems.",
+    description: "At Vedartha, you'll have the opportunity to work with some of the world's most innovative organizations and help them solve their most complex problems.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070",
     label: "Experienced Professionals"
   },
   {
     title: "Shape the future, your way.",
-    description: "Whether you're just starting your career or looking for your next challenge, Deloitte provides a culture of inclusion and growth.",
+    description: "Whether you're just starting your career or looking for your next challenge, Vedartha provides a culture of inclusion and growth.",
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2070",
     label: "Students & Graduates"
   },
@@ -21,7 +21,7 @@ const CAREER_SLIDES = [
     title: "Make an impact that matters.",
     description: "We're looking for individuals with diverse perspectives and a passion for making a difference.",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=2074",
-    label: "Life at Deloitte"
+    label: "Life at Vedartha"
   }
 ];
 
@@ -33,7 +33,6 @@ const CareerSlideshow: React.FC = () => {
 
   return (
     <section className="bg-white relative">
-      {/* Carrers Sticky Header - Sticks to top when main nav is hidden */}
       <StickyHeader title="Careers" bgColor="bg-[#86BC25]" />
       
       <div className="relative min-h-[90vh] flex flex-col lg:flex-row bg-black overflow-hidden">

@@ -21,12 +21,19 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactCli
           {/* Main Footer Links Columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-24">
             {/* Main Links */}
-            <div className="space-y-6">
-              <button onClick={onHomeClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left">About Deloitte</button>
-              <button onClick={onContactClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left">Contact us</button>
-              <button onClick={onRFPClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left">Submit RFP</button>
-              <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left">Newsroom</button>
-              <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left">View locations</button>
+            <div className="space-y-6 text-left">
+              <div className="mb-6">
+                <img 
+                  src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765442492/White_Vedartha_Global_Consultancy_LOGO_2_re1hew.png" 
+                  alt="Vedartha Logo" 
+                  className="h-10 w-auto mb-4"
+                />
+              </div>
+              <button onClick={onHomeClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">About Vedartha</button>
+              <button onClick={onContactClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Contact us</button>
+              <button onClick={onRFPClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Submit RFP</button>
+              <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Newsroom</button>
+              <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">View locations</button>
             </div>
 
             {/* What we do Column */}
@@ -45,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactCli
               <h5 className="font-bold text-xl mb-8 text-gray-200">Our thinking</h5>
               <ul className="space-y-5 text-gray-400 text-sm font-medium">
                 <li><a href="#" className="hover:text-white transition-colors">Overview</a></li>
-                <li><a href="#" className="text-white hover:text-deloitte-green transition-colors border-b-2 border-deloitte-green pb-1">Deloitte Insights</a></li>
+                <li><a href="#" className="text-white hover:text-deloitte-green transition-colors border-b-2 border-deloitte-green pb-1">Vedartha Insights</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Dbriefs</a></li>
               </ul>
             </div>
@@ -76,7 +83,7 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactCli
                 <a href="#" className="text-white hover:text-deloitte-green transition-colors"><Linkedin size={22} /></a>
                 <a href="#" className="text-white hover:text-deloitte-green transition-colors"><Youtube size={26} /></a>
                 <a href="#" className="text-white hover:text-deloitte-green transition-colors">
-                  <div className="w-6 h-6 border-2 border-current rounded-sm flex items-center justify-center font-black text-[10px]">D</div>
+                  <div className="w-6 h-6 border-2 border-current rounded-sm flex items-center justify-center font-black text-[10px]">V</div>
                 </a>
                 <a href="#" className="text-white hover:text-deloitte-green transition-colors"><Instagram size={22} /></a>
               </div>
@@ -108,7 +115,7 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactCli
           <div className="text-[13px] text-gray-800 space-y-6 max-w-6xl">
             <p className="mb-4">© 2026. See <button onClick={onLegalClick} className="text-[#0076A8] hover:underline font-bold">Terms of Use</button> for more information.</p>
             <p className="leading-relaxed">
-              Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee ("DTTL"), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as "Deloitte Global") does not provide services to clients. In the United States, Deloitte refers to one or more of the US member firms of DTTL, their related entities that operate using the "Deloitte" name in the United States and their respective affiliates. Certain services may not be available to attest clients under the rules and regulations of public accounting. Please see <a href="#" className="text-[#0076A8] hover:underline font-bold">www.deloitte.com/about</a> to learn more about our global network of member firms.
+              Vedartha refers to one or more of Vedartha International Limited and its global network of firms. Each firm is a legally separate and independent entity. Vedartha Global does not provide services to clients directly. Please see <a href="#" className="text-[#0076A8] hover:underline font-bold">www.vedartha.com/about</a> to learn more about our global network.
             </p>
           </div>
         </div>

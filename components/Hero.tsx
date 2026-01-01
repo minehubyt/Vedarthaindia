@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const SLIDES = [
   {
     id: 1,
-    title: 'Deloitte at CES 2026',
+    title: 'Vedartha at CES 2026',
     headline: 'Join us at the most powerful tech event in the world.',
-    description: 'Connect with Deloitte at CES 2026 to meet industry specialists and explore the trends, technologies, and strategies driving global change.',
+    description: 'Connect with Vedartha at CES 2026 to meet industry specialists and explore the trends, technologies, and strategies driving global change.',
     cta: 'Learn more',
     ctaColor: 'bg-[#2B88B1]',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2072'

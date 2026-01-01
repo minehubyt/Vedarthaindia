@@ -6,7 +6,7 @@ import { ChevronRight, Share2, Facebook, Linkedin, Mail, Twitter } from 'lucide-
 const SHARED_VALUES = [
   {
     title: 'Lead the way',
-    description: 'Deloitte is not only leading the profession, but also reinventing it for the future. We’re also committed to creating as much impact for our clients as we do for our own people.',
+    description: 'Vedartha is not only leading the profession, but also reinventing it for the future. We’re also committed to creating as much impact for our clients as we do for our own people.',
     icon: 'https://www.deloitte.com/content/dam/Deloitte/global/Images/promo_images/SharedValuesIcons/lead-the-way.png'
   },
   {
@@ -41,7 +41,7 @@ const PurposeValuesPage: React.FC = () => {
           <nav className="flex items-center space-x-3 text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-12">
             <a href="#" className="hover:text-white transition-colors">Home</a>
             <ChevronRight size={14} />
-            <a href="#" className="hover:text-white transition-colors">About Deloitte</a>
+            <a href="#" className="hover:text-white transition-colors">About Vedartha</a>
             <ChevronRight size={14} />
             <a href="#" className="hover:text-white transition-colors">Story</a>
             <ChevronRight size={14} />
@@ -78,7 +78,7 @@ const PurposeValuesPage: React.FC = () => {
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
           <div className="max-w-4xl">
             <p className="text-[28px] md:text-[40px] font-light leading-tight text-black mb-16">
-              At Deloitte, our purpose is to make an impact that matters. For more than 175 years, we have helped our clients and communities navigate change and reach their goals.
+              At Vedartha, our purpose is to make an impact that matters. For more than 175 years, we have helped our clients and communities navigate change and reach their goals.
             </p>
             <div className="space-y-8 text-[18px] text-gray-600 font-light leading-relaxed">
               <p>
@@ -153,21 +153,6 @@ const PurposeValuesPage: React.FC = () => {
             </defs>
             <rect width="100" height="100" fill="url(#grid)" />
           </svg>
-        </div>
-      </section>
-
-      {/* Related Topics / Footer Content */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
-          <h3 className="text-[20px] font-bold mb-12 border-b border-gray-200 pb-4">Related topics</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {['Inclusion and diversity', 'Sustainability', 'Ethics and integrity'].map(topic => (
-              <a key={topic} href="#" className="flex items-center justify-between group py-6 border-b border-gray-100">
-                <span className="text-2xl font-light group-hover:text-[#86BC25] transition-colors">{topic}</span>
-                <ChevronRight size={24} className="text-gray-300 group-hover:text-[#86BC25] group-hover:translate-x-2 transition-all" />
-              </a>
-            ))}
-          </div>
         </div>
       </section>
     </div>

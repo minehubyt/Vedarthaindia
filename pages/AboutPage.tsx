@@ -13,7 +13,7 @@ const AboutPage: React.FC = () => {
           <nav className="flex items-center space-x-3 text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-12">
             <a href="#" className="hover:text-white transition-colors">Home</a>
             <ChevronRight size={14} />
-            <span className="text-white">About Deloitte</span>
+            <span className="text-white">About Vedartha</span>
           </nav>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
@@ -24,7 +24,7 @@ const AboutPage: React.FC = () => {
               className="max-w-4xl"
             >
               <h1 className="text-[clamp(3.5rem,9.5vw,7.5rem)] font-black leading-[0.85] tracking-tighter mb-8 uppercase">
-                About <br /> Deloitte
+                About <br /> Vedartha
               </h1>
               <p className="text-[clamp(1.5rem,3.5vw,2.8rem)] font-light text-gray-400 tracking-tight leading-none">
                 Purpose-led. Impact-driven.
@@ -51,10 +51,10 @@ const AboutPage: React.FC = () => {
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
           <div className="max-w-4xl">
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight mb-12 tracking-tight">
-              At Deloitte, we believe we can make a difference.
+              At Vedartha, we believe we can make a difference.
             </h2>
             <p className="text-[clamp(1.1rem,1.8vw,1.6rem)] text-gray-600 font-light leading-relaxed mb-16">
-              Deloitte is a leading global provider of audit and assurance, consulting, financial advisory, risk advisory, tax, and related services. With more than 175 years of hard work and commitment to making a real difference, our organization has grown in scale and diversity—yet our shared culture remains at the heart of everything we do.
+              Vedartha is a leading global provider of audit and assurance, consulting, financial advisory, risk advisory, tax, and related services. With a commitment to making a real difference, our organization has grown in scale and diversity—yet our shared culture remains at the heart of everything we do.
             </p>
             <div className="h-2 w-24 bg-[#86BC25]" />
           </div>
@@ -87,7 +87,7 @@ const AboutPage: React.FC = () => {
                  <div>
                    <h4 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4">Global Network</h4>
                    <p className="text-gray-600 font-light leading-relaxed text-lg">
-                     Our network of member firms in more than 150 countries and territories serves four out of five Fortune Global 500® companies.
+                     Our network of professionals in more than 150 countries and territories serves global organizations and local businesses alike.
                    </p>
                  </div>
                </div>
@@ -98,7 +98,7 @@ const AboutPage: React.FC = () => {
                  <div>
                    <h4 className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4">Diverse Talent</h4>
                    <p className="text-gray-600 font-light leading-relaxed text-lg">
-                     Approximately 457,000 professionals are committed to making an impact that matters.
+                     Our experts are committed to making an impact that matters for our clients and the world.
                    </p>
                  </div>
                </div>
@@ -116,9 +116,16 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="bg-white p-12 shadow-2xl rounded-sm border-t-8 border-[#86BC25] flex flex-col justify-center">
+              <div className="mb-8">
+                <img 
+                  src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
+                  alt="Vedartha Logo" 
+                  className="h-16 w-auto"
+                />
+              </div>
               <h3 className="text-[clamp(1.5rem,3.5vw,2.8rem)] font-bold mb-8 tracking-tight leading-tight">How we're organized</h3>
               <p className="text-gray-600 font-light leading-relaxed mb-10 text-lg">
-                Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited ("DTTL"), its global network of member firms, and their related entities. DTTL (also referred to as "Deloitte Global") does not provide services to clients.
+                Vedartha International Limited is a leading professional services provider. Our global network operates with shared values to deliver excellence.
               </p>
               <button className="flex items-center text-[#86BC25] font-black text-lg group uppercase tracking-widest">
                 Learn about our structure <ChevronRight className="ml-2 group-hover:translate-x-2 transition-transform" />

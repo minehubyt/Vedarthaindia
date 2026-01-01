@@ -49,7 +49,7 @@ const RFPPage: React.FC = () => {
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter">Success.</h1>
           <p className="text-xl text-gray-400 font-light leading-relaxed mb-12">
-            Your proposal has been securely transmitted. A Deloitte partner specializing in your industry will be in touch within 24 hours to begin the conversation.
+            Your proposal has been securely transmitted. A Vedartha partner specializing in your industry will be in touch within 24 hours to begin the conversation.
           </p>
           <button 
             onClick={() => window.location.hash = ''}
@@ -335,7 +335,7 @@ const RFPPage: React.FC = () => {
                         className="mt-1 w-6 h-6 accent-[#86BC25] border-2 border-gray-200" 
                       />
                       <label htmlFor="consent" className="text-sm text-gray-500 font-light leading-relaxed">
-                        I acknowledge that the information provided will be used to process my request in accordance with the <a href="#" className="text-black font-bold hover:underline">Deloitte Privacy Statement</a>. I understand that a Deloitte representative may contact me to follow up on this proposal.
+                        I acknowledge that the information provided will be used to process my request in accordance with the <a href="#" className="text-black font-bold hover:underline">Vedartha Privacy Statement</a>. I understand that a Vedartha representative may contact me to follow up on this proposal.
                       </label>
                     </div>
                   </div>

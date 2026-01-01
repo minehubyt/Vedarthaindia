@@ -15,7 +15,7 @@ const RevealVideoSection: React.FC = () => {
           playsInline
           className="w-full h-full object-cover grayscale-[0.4] opacity-50"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-business-people-walking-in-a-modern-office-4334-large.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dtgufvwb5/video/upload/v1765436446/10915129-hd_3840_2160_30fps_xy4way.mp4" type="video/mp4" />
           <img 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069" 
             alt="Office background" 

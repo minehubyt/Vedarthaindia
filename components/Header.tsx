@@ -70,10 +70,13 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
           <div className="flex items-center space-x-12 h-full">
             <div 
               onClick={onLogoClick}
-              className="flex items-center space-x-1 group cursor-pointer flex-shrink-0"
+              className="flex items-center cursor-pointer flex-shrink-0"
             >
-              <span className="text-white text-[28px] font-extrabold tracking-tighter">Deloitte</span>
-              <div className="w-[8px] h-[8px] bg-[#86BC25] rounded-full mt-[14px]" />
+              <img 
+                src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
+                alt="Vedartha International Limited" 
+                className="h-10 w-auto"
+              />
             </div>
 
             <nav className="hidden lg:flex items-center space-x-8 h-full">

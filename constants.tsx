@@ -124,7 +124,7 @@ export const FEATURED_ARTICLES: ArticleCard[] = [
   {
     id: '2',
     category: 'Global Report',
-    title: '2024 Global Human Capital Trends',
+    title: '2025 Global Human Capital Trends',
     description: 'New research reveals how boundaryless work is redefining the social contract between workers and organizations.',
     imageUrl: 'https://picsum.photos/seed/human-capital/800/600',
     tag: 'Strategy'
