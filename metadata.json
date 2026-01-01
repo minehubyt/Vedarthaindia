@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Deloitte UI Replica",
+  "description": "A high-fidelity replica of the Deloitte global website featuring smooth Framer Motion animations, a responsive design, and an integrated Gemini-powered Insight Assistant.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
