@@ -89,7 +89,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
   return (
     <div className="bg-white min-h-screen">
       {/* Immersive Insights Hero */}
-      <section className="relative h-[70vh] w-full bg-black overflow-hidden flex items-end pb-12">
+      <section className="relative min-h-[60vh] md:min-h-[70vh] w-full bg-black overflow-hidden flex flex-col justify-start md:justify-center pt-[clamp(90px,15vh,140px)] pb-20">
         <div className="absolute inset-0 z-0">
           <img 
             src={INSIGHTS_ARTICLES[0].image} 
@@ -99,7 +99,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         </div>
         
-        <div className="container mx-auto px-6 lg:px-[8vw] relative z-10 max-w-[1800px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] relative z-10 max-w-[1800px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -109,10 +109,10 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
             <span className="inline-block bg-[#86BC25] text-black text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1 mb-6">
               {INSIGHTS_ARTICLES[0].type}
             </span>
-            <h1 className="text-white text-[clamp(1.75rem,5.5vw,4rem)] font-black leading-[1.1] mb-6 tracking-tight">
+            <h1 className="text-white text-[clamp(1.8rem,7vw,4.5rem)] font-black leading-[1.05] mb-6 tracking-tighter uppercase">
               {INSIGHTS_ARTICLES[0].title}
             </h1>
-            <p className="text-gray-300 text-[clamp(1rem,1.2vw,1.25rem)] font-light mb-8 max-w-2xl leading-relaxed">
+            <p className="text-gray-300 text-[clamp(0.95rem,1.5vw,1.3rem)] font-light mb-8 max-w-2xl leading-relaxed">
               {INSIGHTS_ARTICLES[0].description}
             </p>
             <div className="flex flex-wrap gap-4">
@@ -134,7 +134,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
 
       {/* Content Header */}
       <section className="pt-12 pb-4">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1800px]">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <div>
               <span className="text-[#86BC25] font-black uppercase tracking-[0.4em] text-[10px] mb-2 block">Current Perspectives</span>
@@ -156,7 +156,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
         className={`sticky z-[150] bg-white border-y border-gray-100 shadow-sm transition-all duration-300`}
         style={{ top: isHeaderVisible ? '70px' : '0px' }}
       >
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px] flex items-center justify-between">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1800px] flex items-center justify-between">
           <div className="flex items-center space-x-8 overflow-x-auto no-scrollbar py-6 pr-10">
             {TOPICS.map((topic) => (
               <button
@@ -183,7 +183,7 @@ const InsightsPage: React.FC<InsightsPageProps> = ({ onArticleClick }) => {
 
       {/* Insights Content Grid */}
       <section className="py-12">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1800px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {INSIGHTS_ARTICLES.slice(1).map((article, index) => (
               <motion.div

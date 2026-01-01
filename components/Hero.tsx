@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
   const slide = SLIDES[current];
 
   return (
-    <section className="sticky top-0 h-screen w-full bg-black overflow-hidden flex flex-col justify-center">
+    <section className="sticky top-0 min-h-screen w-full bg-black overflow-hidden flex flex-col justify-start md:justify-center pt-[clamp(90px,15vh,140px)] pb-20">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="container mx-auto px-6 lg:px-[8vw] relative z-20 max-w-[1800px]">
+      <div className="container mx-auto px-[6vw] lg:px-[8vw] relative z-20 max-w-[1800px]">
         <div className="max-w-4xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -74,19 +74,19 @@ const Hero: React.FC = () => {
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <span className="text-white text-[clamp(0.75rem,1vw,0.9rem)] font-bold mb-4 block tracking-[0.2em] opacity-90 uppercase">
+              <span className="text-white text-[clamp(0.7rem,1.5vw,0.9rem)] font-bold mb-4 block tracking-[0.2em] opacity-90 uppercase">
                 {slide.title}
               </span>
               
-              <h1 className="text-white text-[clamp(1.75rem,6vw,4.5rem)] font-black leading-[1.1] mb-8 tracking-tight">
+              <h1 className="text-white text-[clamp(1.8rem,8vw,4.8rem)] font-black leading-[1.02] mb-8 tracking-tighter">
                 {slide.headline}
               </h1>
 
-              <p className="text-gray-300 text-[clamp(0.9rem,1.1vw,1.1rem)] leading-relaxed mb-10 max-w-xl font-light">
+              <p className="text-gray-300 text-[clamp(0.9rem,1.8vw,1.15rem)] leading-relaxed mb-10 max-w-xl font-light">
                 {slide.description}
               </p>
 
-              <button className={`${slide.ctaColor} hover:brightness-110 px-10 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-xl`}>
+              <button className={`${slide.ctaColor} hover:brightness-110 px-8 py-3.5 md:px-10 md:py-4 rounded-full font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-xl`}>
                 {slide.cta}
               </button>
             </motion.div>
@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-6 lg:left-[8vw] z-30 flex items-center space-x-6">
+      <div className="absolute bottom-12 left-[6vw] lg:left-[8vw] z-30 flex items-center space-x-6">
         <div className="flex space-x-3">
           {SLIDES.map((_, i) => (
             <button

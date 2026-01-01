@@ -32,10 +32,10 @@ const ContactUsPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Black Hero Header */}
-      <section className="bg-black pt-32 pb-20 text-white">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
+      <section className="bg-black min-h-[40vh] md:h-[50vh] flex flex-col justify-center text-white pt-[max(80px,12vh)] pb-12">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-3 text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-12">
+          <nav className="flex items-center space-x-3 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-10 md:mb-12">
             <a href="#" className="hover:text-white transition-colors">Home</a>
             <ChevronRight size={14} />
             <span className="text-white">Contact us</span>
@@ -48,7 +48,7 @@ const ContactUsPage: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="max-w-4xl"
             >
-              <h1 className="text-[clamp(3.5rem,8vw,7rem)] font-black leading-[0.9] tracking-tighter mb-4">
+              <h1 className="text-[clamp(3rem,8vw,7rem)] font-black leading-[0.9] tracking-tighter mb-4">
                 Contact us
               </h1>
             </motion.div>
@@ -68,12 +68,12 @@ const ContactUsPage: React.FC = () => {
 
       {/* Main Content Area */}
       <section className="py-24">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           <div className="flex flex-col lg:flex-row gap-20">
             
             {/* Left Column: Form */}
             <div className="flex-1 max-w-4xl">
-              <p className="text-[20px] text-gray-700 font-light mb-16 leading-relaxed">
+              <p className="text-[clamp(1.1rem,1.8vw,1.4rem)] text-gray-700 font-light mb-16 leading-relaxed">
                 Thank you for your interest in Vedartha. Please fill out the form below to help us direct your inquiry to the right department.
               </p>
 

@@ -35,15 +35,13 @@ const PurposeValuesPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Black Hero Header */}
-      <section className="bg-black pt-32 pb-24 text-white">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
+      <section className="bg-black min-h-[50vh] flex flex-col justify-center text-white pt-[max(80px,12vh)] pb-16 md:pb-24">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-3 text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-12">
+          <nav className="flex items-center space-x-3 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-10 md:mb-12">
             <a href="#" className="hover:text-white transition-colors">Home</a>
             <ChevronRight size={14} />
             <a href="#" className="hover:text-white transition-colors">About Vedartha</a>
-            <ChevronRight size={14} />
-            <a href="#" className="hover:text-white transition-colors">Story</a>
             <ChevronRight size={14} />
             <span className="text-white">Purpose and values</span>
           </nav>
@@ -55,7 +53,7 @@ const PurposeValuesPage: React.FC = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="max-w-4xl"
             >
-              <h1 className="text-[clamp(3.5rem,8vw,7.5rem)] font-black leading-[0.9] tracking-tighter mb-8">
+              <h1 className="text-[clamp(3rem,8vw,7.5rem)] font-black leading-[0.9] tracking-tighter mb-8">
                 Purpose and <br /> values
               </h1>
             </motion.div>
@@ -75,9 +73,9 @@ const PurposeValuesPage: React.FC = () => {
 
       {/* Intro Text Section */}
       <section className="py-24 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           <div className="max-w-4xl">
-            <p className="text-[28px] md:text-[40px] font-light leading-tight text-black mb-16">
+            <p className="text-[clamp(1.5rem,3.5vw,2.5rem)] font-light leading-tight text-black mb-16">
               At Vedartha, our purpose is to make an impact that matters. For more than 175 years, we have helped our clients and communities navigate change and reach their goals.
             </p>
             <div className="space-y-8 text-[18px] text-gray-600 font-light leading-relaxed">
@@ -94,10 +92,10 @@ const PurposeValuesPage: React.FC = () => {
 
       {/* Shared Values Grid */}
       <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px]">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           <div className="flex items-center space-x-4 mb-16">
             <div className="w-1.5 h-12 bg-[#86BC25]" />
-            <h2 className="text-[32px] md:text-[44px] font-bold tracking-tight">Our shared values</h2>
+            <h2 className="text-[clamp(1.8rem,4vw,3rem)] font-bold tracking-tight">Our shared values</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -125,10 +123,10 @@ const PurposeValuesPage: React.FC = () => {
 
       {/* Making an Impact Section */}
       <section className="relative overflow-hidden py-32 bg-black text-white">
-        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1600px] relative z-10">
+        <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px] relative z-10">
           <div className="max-w-3xl">
             <span className="text-[#86BC25] font-bold uppercase tracking-[0.3em] text-[12px] mb-8 block">Our commitment</span>
-            <h2 className="text-[44px] md:text-[64px] font-bold leading-[1.1] mb-12 tracking-tighter">Making an impact that matters.</h2>
+            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.1] mb-12 tracking-tighter">Making an impact that matters.</h2>
             <p className="text-xl text-gray-400 font-light mb-16 leading-relaxed">
               We provide quality services and solutions for a more sustainable future. Our commitment to environmental, social, and governance (ESG) goals is integrated into every aspect of our business.
             </p>
