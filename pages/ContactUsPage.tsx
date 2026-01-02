@@ -31,30 +31,26 @@ const ContactUsPage: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Black Hero Header */}
-      <section className="bg-black min-h-[40vh] md:h-[50vh] flex flex-col justify-center text-white pt-[max(80px,12vh)] pb-12">
+      {/* AI AUTO-OPTIMIZED HEADER SPACING */}
+      <section className="bg-black min-h-[45vh] flex flex-col justify-center text-white pt-[clamp(120px,18vh,160px)] pb-16">
         <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-3 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-10 md:mb-12">
-            <a href="#" className="hover:text-white transition-colors">Home</a>
-            <ChevronRight size={14} />
-            <span className="text-white">Contact us</span>
-          </nav>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl"
+          >
+            <span className="text-[#86BC25] font-black uppercase tracking-[0.4em] text-[clamp(10px,1.2vw,14px)] mb-10 block">
+              Who we are / Contact
+            </span>
+            <h1 className="text-[clamp(2.5rem,10vw,8.5rem)] font-black leading-[0.85] tracking-tighter mb-4 uppercase">
+              Contact us
+            </h1>
+          </motion.div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-4xl"
-            >
-              <h1 className="text-[clamp(3rem,8vw,7rem)] font-black leading-[0.9] tracking-tighter mb-4">
-                Contact us
-              </h1>
-            </motion.div>
-
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mt-[clamp(2rem,8vh,10rem)]">
             {/* Social Sharing */}
-            <div className="flex items-center space-x-6 pb-6">
+            <div className="flex items-center space-x-6 pb-6 border-b border-white/10 lg:border-none w-fit">
               <Share2 size={20} className="text-gray-400 cursor-pointer hover:text-white transition-colors" />
               <div className="h-6 w-[1px] bg-white/20" />
               <Facebook size={20} className="text-gray-400 cursor-pointer hover:text-white transition-colors" />
@@ -67,7 +63,7 @@ const ContactUsPage: React.FC = () => {
       </section>
 
       {/* Main Content Area */}
-      <section className="py-24">
+      <section className="py-[clamp(4rem,10vw,8rem)]">
         <div className="container mx-auto px-[6vw] lg:px-[8vw] max-w-[1600px]">
           <div className="flex flex-col lg:flex-row gap-20">
             
@@ -78,18 +74,17 @@ const ContactUsPage: React.FC = () => {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-12">
-                {/* Inquiry Type Section */}
                 <div className="space-y-8">
-                  <h3 className="text-[24px] font-bold border-b border-gray-100 pb-4">Topic and inquiry type</h3>
+                  <h3 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold border-b border-gray-100 pb-4 uppercase tracking-tight text-black">Topic and inquiry type</h3>
                   <div className="relative group">
-                    <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500 mb-2">Inquiry Type *</label>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">Inquiry Type *</label>
                     <div className="relative">
                       <select 
                         required
                         name="inquiryType"
                         value={formData.inquiryType}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors appearance-none cursor-pointer"
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors appearance-none cursor-pointer text-black"
                       >
                         <option value="" disabled>Please select one</option>
                         <option value="audit">Audit & Assurance</option>
@@ -105,96 +100,62 @@ const ContactUsPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Personal Info Section */}
                 <div className="space-y-8 pt-6">
-                  <h3 className="text-[24px] font-bold border-b border-gray-100 pb-4">Personal and professional information</h3>
+                  <h3 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold border-b border-gray-100 pb-4 uppercase tracking-tight text-black">Personal and professional information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">First Name *</label>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500">First Name *</label>
                       <input 
                         required
                         type="text"
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors"
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors text-black"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">Last Name *</label>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500">Last Name *</label>
                       <input 
                         required
                         type="text"
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors"
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors text-black"
                       />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">Email Address *</label>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500">Email Address *</label>
                       <input 
                         required
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors"
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors text-black"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">Organization *</label>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500">Organization *</label>
                       <input 
                         required
                         type="text"
                         name="organization"
                         value={formData.organization}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors"
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors text-black"
                       />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">Job Title *</label>
-                      <input 
-                        required
-                        type="text"
-                        name="jobTitle"
-                        value={formData.jobTitle}
-                        onChange={handleChange}
-                        className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">Country / Region *</label>
-                      <div className="relative">
-                        <select 
-                          required
-                          name="country"
-                          value={formData.country}
-                          onChange={handleChange}
-                          className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors appearance-none cursor-pointer"
-                        >
-                          <option value="India">India</option>
-                          <option value="USA">United States</option>
-                          <option value="UK">United Kingdom</option>
-                          <option value="Canada">Canada</option>
-                          <option value="Australia">Australia</option>
-                        </select>
-                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Message Section */}
                 <div className="space-y-8 pt-6">
-                  <h3 className="text-[24px] font-bold border-b border-gray-100 pb-4">Your message</h3>
+                  <h3 className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold border-b border-gray-100 pb-4 uppercase tracking-tight text-black">Your message</h3>
                   <div className="space-y-2">
-                    <label className="block text-[13px] font-bold uppercase tracking-wider text-gray-500">How can we help? *</label>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-500">How can we help? *</label>
                     <textarea 
                       required
                       name="message"
@@ -202,12 +163,11 @@ const ContactUsPage: React.FC = () => {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Please provide details about your inquiry..."
-                      className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors resize-none"
+                      className="w-full bg-gray-50 border-b-2 border-gray-200 py-4 px-4 text-[16px] outline-none focus:border-[#86BC25] transition-colors resize-none text-black"
                     />
                   </div>
                 </div>
 
-                {/* Privacy Consent */}
                 <div className="pt-10 space-y-8">
                    <div className="flex items-start space-x-4">
                      <input 
@@ -220,7 +180,7 @@ const ContactUsPage: React.FC = () => {
                        className="mt-1 w-5 h-5 accent-[#86BC25]"
                      />
                      <label htmlFor="consent" className="text-[14px] text-gray-600 leading-relaxed">
-                       I agree that my submitted data will be collected and stored. For further details on how we protect your personal information, please review our <a href="#" className="text-[#86BC25] font-bold hover:underline">Privacy Statement</a>. *
+                       I agree that my submitted data will be collected and stored according to the privacy policy. *
                      </label>
                    </div>
 
@@ -238,36 +198,16 @@ const ContactUsPage: React.FC = () => {
 
             {/* Right Column: Sidebar */}
             <div className="lg:w-[400px] space-y-16">
-              <div className="p-10 bg-gray-50 border-l-[6px] border-[#86BC25]">
-                <h4 className="text-[22px] font-bold mb-6">Vedartha Offices</h4>
+              <div className="p-10 bg-gray-50 border-l-[6px] border-[#86BC25] rounded-r-2xl">
+                <h4 className="text-[22px] font-black uppercase tracking-tight mb-6 text-black">Vedartha Offices</h4>
                 <p className="text-gray-600 font-light mb-8 leading-relaxed">
                   With several offices across major cities, we are close to our clients and their needs.
                 </p>
-                <button className="flex items-center text-[#86BC25] font-bold text-[15px] hover:translate-x-2 transition-transform">
+                <button className="flex items-center text-[#86BC25] font-black uppercase tracking-widest text-[11px] hover:translate-x-2 transition-transform">
                   Find our locations <ChevronRight className="ml-1" size={18} />
                 </button>
               </div>
-
-              <div className="space-y-8">
-                <h4 className="text-[20px] font-bold border-b border-gray-200 pb-4">Other ways to contact us</h4>
-                
-                <div className="space-y-6">
-                  <div className="group cursor-pointer">
-                    <h5 className="font-bold text-[16px] mb-2 group-hover:text-[#86BC25] transition-colors">Submit an RFP</h5>
-                    <p className="text-sm text-gray-500 font-light leading-relaxed">
-                      Send us your request for proposal and find out how we can help your organization.
-                    </p>
-                  </div>
-                  <div className="group cursor-pointer">
-                    <h5 className="font-bold text-[16px] mb-2 group-hover:text-[#86BC25] transition-colors">Global office directory</h5>
-                    <p className="text-sm text-gray-500 font-light leading-relaxed">
-                      Connect with Vedartha's global network through our worldwide office directory.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
-
           </div>
         </div>
       </section>

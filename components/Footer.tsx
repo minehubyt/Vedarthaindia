@@ -7,9 +7,10 @@ interface FooterProps {
   onHomeClick?: () => void;
   onContactClick?: () => void;
   onRFPClick?: () => void;
+  onOfficesClick?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactClick, onRFPClick }) => {
+const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactClick, onRFPClick, onOfficesClick }) => {
   return (
     <footer className="bg-black text-white">
       {/* Black Section: Connect & Links */}
@@ -24,16 +25,16 @@ const Footer: React.FC<FooterProps> = ({ onLegalClick, onHomeClick, onContactCli
             <div className="space-y-6 text-left">
               <div className="mb-6">
                 <img 
-                  src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765442492/White_Vedartha_Global_Consultancy_LOGO_2_re1hew.png" 
+                  src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
                   alt="Vedartha Logo" 
-                  className="h-10 w-auto mb-4"
+                  className="h-14 md:h-20 w-auto mb-6 brightness-0 invert"
                 />
               </div>
               <button onClick={onHomeClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">About Vedartha</button>
               <button onClick={onContactClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Contact us</button>
               <button onClick={onRFPClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Submit RFP</button>
               <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">Newsroom</button>
-              <button className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">View locations</button>
+              <button onClick={onOfficesClick} className="block text-2xl font-light text-gray-300 hover:text-white transition-colors text-left w-full">View locations</button>
             </div>
 
             {/* What we do Column */}

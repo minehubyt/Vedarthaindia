@@ -38,3 +38,17 @@ export interface ServiceItem {
   description: string;
   icon: string;
 }
+
+export interface Office {
+  id: string;
+  city: string;
+  country: string;
+  region: 'Americas' | 'EMEA' | 'APAC' | 'India';
+  address: string;
+  phone: string;
+  email: string;
+  partnerName: string;
+  partnerTitle: string;
+  imageUrl: string;
+  coordinates: { lat: number; lng: number };
+}

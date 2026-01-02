@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Globe, Menu, X, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
+import { Search, Globe, Menu, X, ChevronDown, ChevronRight, ArrowRight, FilePlus, Headphones } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 
 interface HeaderProps {
@@ -10,7 +10,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
-  const [isVisible, setIsVisible] = useState(true);
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,32 +17,13 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
   const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
   
   useEffect(() => {
-    let lastScroll = 0;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 50);
-      
-      const totalHeight = document.documentElement.scrollHeight;
-      const windowHeight = window.innerHeight;
-
-      // Logic: show on scroll up, hide on scroll down
-      const isNearTop = scrollY < 100;
-      const isNearBottom = scrollY > totalHeight - windowHeight - 100;
-
-      if (isNearTop || isNearBottom || mobileMenuOpen || activeTab || scrollY < lastScroll) {
-        setIsVisible(true);
-      } else if (scrollY > lastScroll && scrollY > 100) {
-        setIsVisible(false);
-        setActiveTab(null);
-      }
-      lastScroll = scrollY;
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileMenuOpen, activeTab]);
+  }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -68,27 +48,48 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
 
   const currentNavData = NAV_ITEMS.find(item => item.label === activeTab);
 
+  const resolvePath = (label: string) => {
+    const map: Record<string, string> = {
+      'Case studies': 'case-studies',
+      'Overview': 'services-overview',
+      'AI & Engineering': 'ai-engineering',
+      'Assurance': 'assurance',
+      'Audit': 'audit',
+      'Business Process Solutions': 'business-process-solutions',
+      'Cyber': 'cyber',
+      'Reports': 'reports',
+      'Articles': 'articles',
+      'Podcasts': 'podcasts',
+      'Contact Us': 'contact-us',
+      'Submit RFP': 'rfp',
+      'Global Office Directory': 'offices',
+      'What we believe in': 'purpose-values',
+      'Careers': 'careers',
+      'About Us': 'about',
+      'Who we are': 'about',
+      'Our Thinking': 'insights'
+    };
+    return map[label] || 'home';
+  };
+
   return (
     <div className="relative z-[250]">
       <motion.header 
-        initial={{ y: 0 }}
         animate={{ 
-          y: isVisible ? 0 : -100,
-          backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 1)'
+          backgroundColor: scrolled ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 1)'
         }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} 
-        className={`fixed top-0 left-0 right-0 z-[250] pt-0 pb-0 border-b transition-colors duration-300 ${scrolled ? 'border-white/10' : 'border-transparent'}`}
+        className={`fixed top-0 left-0 right-0 z-[250] border-b transition-all duration-300 ${scrolled ? 'border-white/10 shadow-lg' : 'border-transparent'}`}
       >
         <div className="container mx-auto px-6 lg:px-[8vw] flex items-center justify-between max-w-[1800px] h-[70px]">
           <div className="flex items-center space-x-12 h-full">
             <div 
-              onClick={() => { setMobileMenuOpen(false); onLogoClick?.(); }}
+              onClick={() => { setMobileMenuOpen(false); onLogoClick?.(); setActiveTab(null); }}
               className="flex items-center cursor-pointer flex-shrink-0"
             >
               <img 
                 src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
-                alt="Vedartha International Limited" 
-                className="h-9 md:h-10 w-auto"
+                alt="Vedartha" 
+                className="h-10 md:h-14 w-auto brightness-0 invert"
               />
             </div>
 
@@ -97,8 +98,12 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
                 <div key={item.label} className="relative h-full flex items-center">
                   <button 
                     onClick={() => {
-                      if (item.label === 'Our Thinking') onLinkClick?.('insights');
-                      else handleTabClick(item.label);
+                      if (item.children) {
+                        handleTabClick(item.label);
+                      } else {
+                        setActiveTab(null);
+                        onLinkClick?.(resolvePath(item.label));
+                      }
                     }}
                     className={`text-[15px] font-bold flex items-center space-x-2 transition-all group h-full ${
                       activeTab === item.label ? 'text-[#86BC25]' : 'text-white hover:text-white/70'
@@ -118,160 +123,25 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
           </div>
 
           <div className="flex items-center space-x-6 text-white h-full">
-            <div className="hidden lg:flex items-center space-x-6 h-full">
-              <div className="flex items-center space-x-2 cursor-pointer group hover:text-[#86BC25] transition-colors h-full">
-                <Search size={20} strokeWidth={2.5} />
-                <span className="text-[13px] font-bold uppercase tracking-widest">Search</span>
+            <div className="hidden lg:flex items-center space-x-6 h-full font-bold uppercase tracking-[0.15em] text-[13px]">
+              <div className="flex items-center space-x-2 cursor-pointer group hover:text-[#86BC25] transition-colors">
+                <Search size={18} strokeWidth={2.5} />
+                <span>Search</span>
               </div>
-              <div className="flex items-center space-x-2 cursor-pointer group hover:text-[#86BC25] transition-colors h-full">
+              <div className="flex items-center space-x-2 cursor-pointer group hover:text-[#86BC25] transition-colors">
                 <Globe size={18} strokeWidth={2.5} />
-                <span className="text-[13px] font-bold uppercase tracking-widest flex items-center">
-                  Global
-                  <ChevronDown size={12} className="ml-1" />
-                </span>
+                <span className="flex items-center">Global <ChevronDown size={12} className="ml-1" /></span>
               </div>
             </div>
             
-            <button 
-              className="lg:hidden text-white p-2 -mr-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <AnimatePresence mode="wait">
-                {mobileMenuOpen ? (
-                  <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }}>
-                    <X size={28} />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }}>
-                    <Menu size={28} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            <button className="lg:hidden text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[240] lg:hidden"
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 w-full md:w-[400px] h-screen bg-[#111] z-[260] lg:hidden flex flex-col shadow-2xl"
-            >
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <img 
-                  src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
-                  alt="Vedartha" 
-                  className="h-8"
-                />
-                <button onClick={() => setMobileMenuOpen(false)} className="text-white p-2">
-                  <X size={24} />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto px-6 py-8 custom-scrollbar">
-                <div className="space-y-2">
-                  {NAV_ITEMS.map((item, idx) => (
-                    <motion.div 
-                      key={item.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + idx * 0.05 }}
-                    >
-                      <button 
-                        onClick={() => {
-                          if (item.children) {
-                            setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label);
-                          } else {
-                            setMobileMenuOpen(false);
-                          }
-                        }}
-                        className={`w-full flex items-center justify-between py-4 text-left border-b border-white/5 group ${expandedMobileItem === item.label ? 'text-[#86BC25]' : 'text-white'}`}
-                      >
-                        <span className="text-2xl font-bold tracking-tight">{item.label}</span>
-                        {item.children && (
-                          <ChevronDown size={20} className={`transition-transform duration-300 ${expandedMobileItem === item.label ? 'rotate-180' : ''}`} />
-                        )}
-                      </button>
-
-                      <AnimatePresence>
-                        {expandedMobileItem === item.label && item.children && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden bg-white/5 rounded-lg my-2"
-                          >
-                            <div className="p-4 space-y-6">
-                              {item.children.sections.map((section) => (
-                                <div key={section.title} className="space-y-3">
-                                  <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#86BC25]">{section.title}</h4>
-                                  <div className="grid grid-cols-1 gap-3">
-                                    {section.items.map((sub) => (
-                                      <button
-                                        key={sub.label}
-                                        onClick={() => {
-                                          if (sub.label === 'What we believe in') handleMobileLinkClick('purpose-values');
-                                          else if (sub.label === 'Contact Us') handleMobileLinkClick('contact-us');
-                                          else if (sub.label === 'Submit RFP') handleMobileLinkClick('rfp');
-                                          else if (item.label === 'Our Thinking') handleMobileLinkClick('insights');
-                                          else handleMobileLinkClick('home');
-                                        }}
-                                        className="text-gray-300 hover:text-white transition-colors text-left text-sm py-1 flex items-center justify-between group"
-                                      >
-                                        <span>{sub.label}</span>
-                                        <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-                                      </button>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="mt-12 space-y-6">
-                   <div className="flex items-center space-x-4 text-white/60 p-4 border border-white/10 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group">
-                      <Search size={20} />
-                      <span className="font-bold text-sm uppercase tracking-widest group-hover:text-white transition-colors">Search Vedartha</span>
-                   </div>
-                   <div className="flex items-center justify-between p-4 bg-[#86BC25] rounded-xl text-black font-black uppercase tracking-widest text-xs cursor-pointer hover:brightness-110 transition-all">
-                      <span>Global Locations</span>
-                      <Globe size={18} />
-                   </div>
-                </div>
-              </div>
-
-              <div className="p-6 border-t border-white/10 bg-[#0a0a0a]">
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-4">Professional Services Network</p>
-                <div className="flex space-x-4">
-                  <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center text-white text-xs font-black">V</div>
-                  <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center text-white text-xs font-black">IN</div>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* Desktop Mega Menus (Unchanged behavior but ensured layering) */}
+      {/* Desktop Mega Menu Layout */}
       <AnimatePresence>
         {activeTab && currentNavData?.children && (
           <motion.div
@@ -279,34 +149,52 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block fixed top-[70px] left-0 right-0 z-[245] bg-[#111] text-white overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.5)] border-b border-white/5"
+            className="hidden lg:block fixed top-[70px] left-0 right-0 z-[245] bg-[#111] text-white overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.7)] border-b border-white/5"
           >
-            <div className="flex flex-col lg:flex-row min-h-[500px]">
-              {/* Sidebar Menu */}
-              <div className="w-full lg:w-[320px] bg-[#1a1a1a] py-6">
-                {currentNavData.children.sections.map((section, idx) => (
-                  <button
-                    key={section.title}
-                    onMouseEnter={() => setActiveSectionIdx(idx)}
-                    className={`w-full flex items-center justify-between px-10 py-5 text-left transition-all duration-300 group ${
-                      activeSectionIdx === idx 
-                        ? 'bg-[#111] text-[#86BC25] pl-12' 
-                        : 'text-gray-300 hover:text-white'
-                    }`}
+            <div className="flex min-h-[550px] max-w-[1800px] mx-auto">
+              <div className="w-[300px] bg-[#1a1a1a] flex flex-col justify-between border-r border-white/5">
+                <div className="py-8">
+                  {currentNavData.children.sections.map((section, idx) => (
+                    <button
+                      key={section.title}
+                      onMouseEnter={() => setActiveSectionIdx(idx)}
+                      className={`w-full flex items-center justify-between px-10 py-5 text-left transition-all duration-300 group ${
+                        activeSectionIdx === idx 
+                          ? 'bg-[#111] text-[#86BC25] pl-12 font-bold' 
+                          : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      <span className="text-[17px] tracking-tight">{section.title}</span>
+                      <ChevronRight size={16} className={`transition-all duration-300 ${activeSectionIdx === idx ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`} />
+                    </button>
+                  ))}
+                </div>
+
+                <div className="p-8 space-y-3 bg-[#0c0c0c]">
+                  <button 
+                    onClick={() => { onLinkClick?.('rfp'); setActiveTab(null); }}
+                    className="w-full flex items-center justify-between p-4 bg-[#86BC25] text-black rounded-xl group transition-all hover:scale-[1.02]"
                   >
-                    <span className={`text-[17px] font-medium tracking-tight ${activeSectionIdx === idx ? 'font-bold' : ''}`}>
-                      {section.title}
-                    </span>
-                    <ChevronRight 
-                      size={16} 
-                      className={`transition-all duration-300 ${activeSectionIdx === idx ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`} 
-                    />
+                    <div className="flex flex-col items-start leading-tight">
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-60 mb-0.5">Action</span>
+                      <span className="font-black text-xs uppercase tracking-widest">Submit RFP</span>
+                    </div>
+                    <FilePlus size={18} strokeWidth={2.5} />
                   </button>
-                ))}
+                  <button 
+                    onClick={() => { onLinkClick?.('contact-us'); setActiveTab(null); }}
+                    className="w-full flex items-center justify-between p-4 bg-white/5 text-white rounded-xl border border-white/10 group transition-all hover:bg-white/10"
+                  >
+                    <div className="flex flex-col items-start leading-tight">
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-40 mb-0.5">Support</span>
+                      <span className="font-black text-xs uppercase tracking-widest">Contact us</span>
+                    </div>
+                    <Headphones size={18} strokeWidth={2.5} />
+                  </button>
+                </div>
               </div>
 
-              {/* Main Content Area */}
-              <div className="flex-1 px-12 lg:px-20 py-12 lg:py-16 bg-[#111] overflow-y-auto max-h-[70vh]">
+              <div className="flex-1 px-16 py-16 bg-[#111] overflow-y-auto max-h-[75vh] custom-scrollbar">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${activeTab}-${activeSectionIdx}`}
@@ -314,19 +202,16 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10"
+                    className="grid grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-10"
                   >
                     {currentNavData.children.sections[activeSectionIdx].items.map((item) => (
                       <button
                         key={item.label}
                         onClick={() => {
-                          if (item.label === 'What we believe in') onLinkClick?.('purpose-values');
-                          else if (item.label === 'Contact Us') onLinkClick?.('contact-us');
-                          else if (item.label === 'Submit RFP') onLinkClick?.('rfp');
-                          else if (activeTab === 'Our Thinking') onLinkClick?.('insights');
+                          onLinkClick?.(resolvePath(item.label));
                           setActiveTab(null);
                         }}
-                        className="text-[17px] font-light text-gray-300 hover:text-[#86BC25] transition-all block w-fit text-left hover:translate-x-1 leading-snug"
+                        className="text-[17px] font-light text-gray-400 hover:text-[#86BC25] transition-all block w-fit text-left hover:translate-x-1 leading-snug"
                       >
                         {item.label}
                       </button>
@@ -335,18 +220,16 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
                 </AnimatePresence>
               </div>
 
-              {/* Featured Spotlight Section */}
-              <div className="hidden xl:flex w-[480px] bg-[#111] p-12 lg:p-16 border-l border-white/5 flex-col">
-                <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#86BC25] mb-8">Featured Spotlight</h4>
+              <div className="w-[480px] bg-[#111] p-16 border-l border-white/5 hidden xl:flex flex-col">
+                <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-[#86BC25] mb-10">Featured Spotlight</h4>
                 <div 
                   onClick={() => {
-                     if (currentNavData.label === 'Who we are') onLinkClick?.('about');
-                     else if (currentNavData.label === 'Our Thinking') onLinkClick?.('insights');
+                     onLinkClick?.(resolvePath(currentNavData.children.featured?.category || 'home'));
                      setActiveTab(null);
                   }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative aspect-[16/10] mb-8 overflow-hidden rounded-sm bg-neutral-800">
+                  <div className="relative aspect-[16/10] mb-8 overflow-hidden rounded-sm">
                     <img 
                       src={currentNavData.children.featured?.imageUrl || "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=600"} 
                       alt="Featured" 
@@ -355,12 +238,12 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   </div>
                   <div className="space-y-4">
-                    <span className="text-gray-400 text-[12px] font-bold uppercase tracking-widest block">{currentNavData.children.featured?.category}</span>
-                    <h5 className="text-white text-[24px] font-bold leading-tight tracking-tight group-hover:text-[#86BC25] transition-colors">
-                      {currentNavData.children.featured?.subtitle || "Together makes progress"}
+                    <span className="text-gray-400 text-[11px] font-bold uppercase tracking-widest block">{currentNavData.children.featured?.category}</span>
+                    <h5 className="text-white text-[28px] font-black leading-tight tracking-tight group-hover:text-[#86BC25] transition-colors uppercase">
+                      {currentNavData.children.featured?.title}
                     </h5>
-                    <div className="flex items-center text-[#86BC25] font-bold text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
-                      Learn more <ChevronRight size={16} className="ml-1" />
+                    <div className="flex items-center text-[#86BC25] font-black text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
+                      Explore more <ChevronRight size={16} className="ml-1" />
                     </div>
                   </div>
                 </div>
@@ -377,8 +260,103 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick, onLinkClick }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveTab(null)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[202] hidden lg:block"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[202] hidden lg:block"
           />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Drawer (Upgraded with Buttons and Top Padding) */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-[#111] z-[300] lg:hidden flex flex-col"
+          >
+            {/* Safe Area Header Padding */}
+            <div className="h-[70px] shrink-0 border-b border-white/5 flex items-center justify-between px-6">
+               <img 
+                src="https://res.cloudinary.com/dtgufvwb5/image/upload/v1765436446/Vedartha_Global_Consultancy_LOGO-removebg-preview_xt90yx.png" 
+                alt="Vedartha" 
+                className="h-8 brightness-0 invert"
+              />
+              <button onClick={() => setMobileMenuOpen(false)} className="text-white p-2">
+                <X size={28} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-6 py-8 space-y-4 custom-scrollbar">
+              {NAV_ITEMS.map((item) => (
+                <div key={item.label}>
+                   <button 
+                    onClick={() => {
+                      if (item.children) setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label);
+                      else handleMobileLinkClick(resolvePath(item.label));
+                    }}
+                    className={`w-full flex items-center justify-between py-5 text-xl font-black uppercase border-b border-white/5 transition-colors ${expandedMobileItem === item.label ? 'text-[#86BC25]' : 'text-white'}`}
+                   >
+                    <span>{item.label}</span>
+                    {item.children && <ChevronDown className={`transition-transform duration-300 ${expandedMobileItem === item.label ? 'rotate-180' : ''}`} />}
+                   </button>
+                   <AnimatePresence>
+                    {expandedMobileItem === item.label && item.children && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="bg-white/5 rounded-2xl my-4 overflow-hidden"
+                      >
+                         <div className="px-6 py-6 space-y-8">
+                            {item.children.sections.map(s => (
+                              <div key={s.title} className="space-y-3">
+                                 <p className="text-[10px] font-black text-[#86BC25] uppercase tracking-[0.2em]">{s.title}</p>
+                                 <div className="grid grid-cols-1 gap-2">
+                                   {s.items.map(sub => (
+                                     <button 
+                                      key={sub.label} 
+                                      onClick={() => handleMobileLinkClick(resolvePath(sub.label))}
+                                      className="block text-gray-300 text-[17px] font-light py-2 hover:text-white text-left"
+                                     >
+                                      {sub.label}
+                                     </button>
+                                   ))}
+                                 </div>
+                              </div>
+                            ))}
+                         </div>
+                      </motion.div>
+                    )}
+                   </AnimatePresence>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Action Area - Ensure these are always visible and accessible */}
+            <div className="p-6 bg-[#0c0c0c] border-t border-white/10 space-y-3 shrink-0">
+               <button 
+                  onClick={() => handleMobileLinkClick('rfp')}
+                  className="w-full flex items-center justify-between p-4 bg-[#86BC25] text-black rounded-xl"
+               >
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[8px] font-black uppercase tracking-[0.2em] opacity-60">Action</span>
+                    <span className="font-black text-xs uppercase tracking-widest">Submit RFP</span>
+                  </div>
+                  <FilePlus size={18} strokeWidth={2.5} />
+               </button>
+               <button 
+                  onClick={() => handleMobileLinkClick('contact-us')}
+                  className="w-full flex items-center justify-between p-4 bg-white/5 text-white rounded-xl border border-white/10"
+               >
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[8px] font-black uppercase tracking-[0.2em] opacity-40">Support</span>
+                    <span className="font-black text-xs uppercase tracking-widest">Contact us</span>
+                  </div>
+                  <Headphones size={18} strokeWidth={2.5} />
+               </button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

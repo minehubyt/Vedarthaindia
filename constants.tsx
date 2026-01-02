@@ -1,5 +1,5 @@
 
-import { ArticleCard, NavItem, ServiceItem } from './types';
+import { ArticleCard, NavItem, ServiceItem, Office } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { 
@@ -55,34 +55,63 @@ export const NAV_ITEMS: NavItem[] = [
     children: {
       sections: [
         {
-          title: 'Audit & Assurance',
+          title: 'Overview',
           items: [
-            { label: 'Audit Services', href: '#' },
-            { label: 'Accounting & Reporting', href: '#' },
+            { label: 'Our approach to solutions', href: '#' },
+            { label: 'Global impact overview', href: '#' },
           ]
         },
         {
-          title: 'Consulting',
+          title: 'Case studies',
           items: [
-            { label: 'Strategy & Analytics', href: '#' },
-            { label: 'Technology', href: '#' },
+            { label: 'Client success stories', href: '#' },
+            { label: 'Innovation in action', href: '#' },
+          ]
+        },
+        {
+          title: 'Services',
+          items: [
+            { label: 'AI & Engineering', href: '#' },
+            { label: 'Assurance', href: '#' },
+            { label: 'Audit', href: '#' },
+            { label: 'Business Process Solutions', href: '#' },
+            { label: 'Customer', href: '#' },
+            { label: 'Cyber', href: '#' },
+            { label: 'Deloitte Private', href: '#' },
+            { label: 'Direct Tax', href: '#' },
+            { label: 'Enterprise Performance', href: '#' },
+            { label: 'Finance', href: '#' },
+            { label: 'Finance Transformation', href: '#' },
+            { label: 'Global Employer Services', href: '#' },
             { label: 'Human Capital', href: '#' },
+            { label: 'Indirect Tax', href: '#' },
+            { label: 'Legal Business Services', href: '#' },
+            { label: 'M&A and Restructuring Services', href: '#' },
+            { label: 'Operate', href: '#' },
+            { label: 'Regulatory, Risk & Forensic', href: '#' },
+            { label: 'Strategy & Transactions', href: '#' },
+            { label: 'Sustainability', href: '#' },
+            { label: 'Tax Technology Consulting', href: '#' },
           ]
         },
         {
-          title: 'Tax',
+          title: 'Industries',
           items: [
-            { label: 'Business Tax', href: '#' },
-            { label: 'International Tax', href: '#' },
-            { label: 'Legal', href: '#' },
+            { label: 'IndustryAdvantage™', href: '#' },
+            { label: 'Consumer', href: '#' },
+            { label: 'Energy, Resources & Industrials', href: '#' },
+            { label: 'Financial Services', href: '#' },
+            { label: 'Government & Public Services', href: '#' },
+            { label: 'Life Sciences & Health Care', href: '#' },
+            { label: 'Technology, Media & Telecommunications', href: '#' },
           ]
         }
       ],
       featured: {
-        category: 'Services',
-        title: 'Client Stories',
+        category: 'Service',
+        title: 'Blockchain & Digital Assets',
         subtitle: 'Unlocking exponential value',
-        imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400',
+        imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=600',
         link: '#'
       }
     }
@@ -93,23 +122,80 @@ export const NAV_ITEMS: NavItem[] = [
     children: {
       sections: [
         {
-          title: 'Digital Transformation',
+          title: 'Insights',
+          items: [
+            { label: 'Reports', href: '#' },
+            { label: 'Articles', href: '#' },
+            { label: 'Podcasts', href: '#' },
+          ]
+        },
+        {
+          title: 'Future Tech',
           items: [
             { label: 'AI & Data', href: '#' },
             { label: 'Cloud Strategy', href: '#' },
           ]
         },
         {
-          title: 'Sustainability',
+          title: 'Impact',
           items: [
+            { label: 'Sustainability', href: '#' },
             { label: 'ESG Reporting', href: '#' },
-            { label: 'Decarbonization', href: '#' },
           ]
         }
-      ]
+      ],
+      featured: {
+        category: 'Insights',
+        title: 'Strategic Foresight',
+        subtitle: 'Tech Trends 2025: Applied Intelligence',
+        imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=600',
+        link: '#'
+      }
     }
   },
-  { label: 'Careers', href: '#' },
+  { label: 'Careers', href: 'careers' },
+];
+
+export const OFFICES: Office[] = [
+  {
+    id: 'ranchi-ops',
+    city: 'Ranchi',
+    country: 'India',
+    region: 'India',
+    address: '2nd Floor, Tara Kunj Complex, Khelgaon-Tatisilwai Rd, Chowk, Ranchi, Jharkhand 834012',
+    phone: '+91 9110154848',
+    email: 'ranchi@vedartha.in',
+    partnerName: 'Vedartha Global',
+    partnerTitle: 'India - Asia Pacific Center of Excellence',
+    imageUrl: 'https://images.unsplash.com/photo-1596760407110-2f759c2d705d?auto=format&fit=crop&q=80&w=1200',
+    coordinates: { lat: 23.4025, lng: 85.3995 }
+  },
+  {
+    id: 'mumbai-hq',
+    city: 'Mumbai',
+    country: 'India',
+    region: 'India',
+    address: 'Indiabulls Finance Centre, Tower 3, Senapati Bapat Marg, Elphinstone Road (W), Mumbai - 400013',
+    phone: '+91 22 6185 4000',
+    email: 'mumbai@vedartha.com',
+    partnerName: 'Anjali Sharma',
+    partnerTitle: 'Managing Partner, India',
+    imageUrl: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&q=80&w=800',
+    coordinates: { lat: 19.1136, lng: 72.8697 }
+  },
+  {
+    id: 'ny-global',
+    city: 'New York',
+    country: 'USA',
+    region: 'Americas',
+    address: '30 Rockefeller Plaza, New York, NY 10112, United States',
+    phone: '+1 212 492 4000',
+    email: 'nyc@vedartha.com',
+    partnerName: 'James Wilson',
+    partnerTitle: 'Global Advisory Leader',
+    imageUrl: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800',
+    coordinates: { lat: 40.7128, lng: -74.0060 }
+  }
 ];
 
 export const FEATURED_ARTICLES: ArticleCard[] = [
@@ -120,30 +206,6 @@ export const FEATURED_ARTICLES: ArticleCard[] = [
     description: 'How organizations can scale AI while maintaining trust and security in an evolving landscape.',
     imageUrl: 'https://picsum.photos/seed/ai-future/800/600',
     tag: 'Technology'
-  },
-  {
-    id: '2',
-    category: 'Global Report',
-    title: '2025 Global Human Capital Trends',
-    description: 'New research reveals how boundaryless work is redefining the social contract between workers and organizations.',
-    imageUrl: 'https://picsum.photos/seed/human-capital/800/600',
-    tag: 'Strategy'
-  },
-  {
-    id: '3',
-    category: 'Environmental',
-    title: 'Sustainability & Climate Change: Leading the transition',
-    description: 'Practical steps for businesses to reach net-zero goals and drive sustainable growth.',
-    imageUrl: 'https://picsum.photos/seed/climate/800/600',
-    tag: 'Sustainability'
-  },
-  {
-    id: '4',
-    category: 'Finance',
-    title: 'Resilience in the face of economic uncertainty',
-    description: 'Navigating market volatility with agile financial planning and risk management.',
-    imageUrl: 'https://picsum.photos/seed/finance/800/600',
-    tag: 'Advisory'
   }
 ];
 
@@ -157,15 +219,5 @@ export const SERVICES: ServiceItem[] = [
     title: 'Consulting',
     description: 'Driving business transformation through strategy, technology, and operations.',
     icon: 'Lightbulb'
-  },
-  {
-    title: 'Risk Advisory',
-    description: 'Anticipating and managing strategic, operational, and financial risks.',
-    icon: 'AlertTriangle'
-  },
-  {
-    title: 'Tax & Legal',
-    description: 'Navigating the global tax and legal landscape with certainty.',
-    icon: 'Briefcase'
   }
 ];

@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { Share2, Bookmark, Clock, ArrowLeft, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Share2, Bookmark, Clock, ArrowLeft, Download, Loader2, CheckCircle2 } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'overview', label: 'Overview' },
@@ -14,22 +14,17 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const [activeSection, setActiveSection] = useState('overview');
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
 
-  useEffect(() => {
-    let lastScroll = 0;
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll < 100) {
-        setIsHeaderVisible(true);
-      } else {
-        setIsHeaderVisible(currentScroll < lastScroll);
-      }
-      lastScroll = currentScroll;
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const handleDownload = () => {
+    setIsDownloading(true);
+    setTimeout(() => {
+      setIsDownloading(false);
+      setDownloadSuccess(true);
+      setTimeout(() => setDownloadSuccess(false), 3000);
+    }, 2000);
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -57,7 +52,7 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           </button>
 
           <nav className="flex items-center space-x-3 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">
-            <span className="hover:text-white cursor-pointer transition-colors">Our Thinking</span>
+            <span className="hover:text-white cursor-pointer transition-colors" onClick={onBack}>Our Thinking</span>
             <span className="text-gray-600">/</span>
             <span className="text-white">Tech Trends 2025</span>
           </nav>
@@ -78,9 +73,16 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 <span className="font-black uppercase tracking-widest">15 Min Read</span>
               </div>
               <div className="flex items-center space-x-4">
-                <button type="button" className="flex items-center space-x-2 bg-[#86BC25] text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:brightness-110 transition-all shadow-xl">
-                   <Download size={14} />
-                   <span>Download Report</span>
+                <button 
+                  type="button" 
+                  onClick={handleDownload}
+                  disabled={isDownloading}
+                  className={`flex items-center space-x-2 px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest transition-all shadow-xl ${
+                    downloadSuccess ? 'bg-green-600 text-white' : 'bg-[#86BC25] text-black hover:brightness-110'
+                  }`}
+                >
+                   {isDownloading ? <Loader2 size={14} className="animate-spin" /> : downloadSuccess ? <CheckCircle2 size={14} /> : <Download size={14} />}
+                   <span>{isDownloading ? 'Preparing...' : downloadSuccess ? 'Download Ready' : 'Download Report'}</span>
                 </button>
               </div>
             </div>
@@ -89,10 +91,7 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       </section>
 
       {/* Chapter Navigation (Sticky) */}
-      <div 
-        className="sticky z-[150] bg-white border-b border-gray-100 shadow-sm transition-all duration-300"
-        style={{ top: isHeaderVisible ? '70px' : '0px' }}
-      >
+      <div className="sticky top-[70px] z-[150] bg-white border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px] flex items-center justify-between py-6">
           <div className="flex items-center space-x-10 overflow-x-auto no-scrollbar">
             {SECTIONS.map((section) => (
@@ -176,6 +175,40 @@ const InsightPostPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           </div>
         </div>
       </section>
+
+      {/* Mock Progress Overlay */}
+      <AnimatePresence>
+        {isDownloading && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-sm px-6"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              className="bg-white p-12 rounded-3xl max-w-md w-full text-center space-y-8 shadow-[0_40px_100px_rgba(0,0,0,0.4)]"
+            >
+              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto">
+                <Loader2 size={32} className="animate-spin text-[#86BC25]" />
+              </div>
+              <div>
+                <h4 className="text-xl font-black uppercase tracking-tight mb-2">Preparing Asset</h4>
+                <p className="text-sm text-gray-500 font-light">Compiling latest Tech Trends 2025 briefing for secure download...</p>
+              </div>
+              <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 1.8 }}
+                  className="h-full bg-[#86BC25]"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
