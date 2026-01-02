@@ -123,8 +123,8 @@ const App: React.FC = () => {
               <div className="relative z-10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
                 <RevealVideoSection />
                 <FeaturedContent onNavigateToInsights={() => navigateTo('insights')} />
-                <ServicesSection />
-                <CareerSlideshow />
+                <ServicesSection onNavigateToContact={() => navigateTo('contact-us')} />
+                <CareerSlideshow onNavigateToCareers={() => navigateTo('careers')} />
               </div>
             </main>
           </motion.div>

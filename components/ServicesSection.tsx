@@ -19,7 +19,11 @@ const SERVICE_IMAGES: Record<string, string> = {
   'Tax & Legal': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800',
 };
 
-const ServicesSection: React.FC = () => {
+interface ServicesSectionProps {
+  onNavigateToContact?: () => void;
+}
+
+const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToContact }) => {
   const { scrollYProgress } = useScroll();
   const bgTextY = useTransform(scrollYProgress, [0.4, 0.7], [0, -100]);
 
@@ -32,7 +36,7 @@ const ServicesSection: React.FC = () => {
         style={{ y: bgTextY }}
         className="absolute top-40 left-0 w-full pointer-events-none select-none overflow-hidden opacity-[0.03] whitespace-nowrap"
       >
-        <span className="text-[25vw] font-black leading-none uppercase tracking-tighter">
+        <span className="text-[25vw] font-black leading-none uppercase tracking-tighter text-black">
           Solutions. Impact. Future.
         </span>
       </motion.div>
@@ -48,14 +52,14 @@ const ServicesSection: React.FC = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="lg:w-1/2"
             >
-              <span className="text-deloitte-green font-bold uppercase tracking-[0.4em] text-[10px] mb-8 block">
+              <span className="text-deloitte-green font-bold uppercase tracking-[0.4em] text-[clamp(10px,1.2vw,14px)] mb-8 block">
                 Expertise & Capabilities
               </span>
-              <h2 className="text-[clamp(2.5rem,10vw,8rem)] font-black mb-10 leading-[0.85] tracking-tighter text-black">
+              <h2 className="text-[clamp(2.5rem,8vw,6.5rem)] font-black mb-10 leading-[0.85] tracking-tighter text-black uppercase">
                 Redefining the <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-deloitte-green to-green-300">impossible.</span>
               </h2>
-              <p className="text-[clamp(1.2rem,2vw,1.8rem)] text-gray-500 max-w-xl font-light leading-relaxed">
+              <p className="text-[clamp(1.1rem,1.8vw,1.4rem)] text-gray-500 max-w-xl font-light leading-relaxed">
                 We don't just solve problems; we identify opportunities before they arise. Our integrated approach ensures that every solution is built for resilience.
               </p>
             </motion.div>
@@ -73,7 +77,7 @@ const ServicesSection: React.FC = () => {
                     >
                       <div className="flex items-center space-x-8">
                         <span className="text-gray-300 font-black text-2xl group-hover:text-deloitte-green transition-colors">0{i+1}</span>
-                        <h3 className="text-[clamp(1.5rem,4vw,3rem)] font-bold tracking-tight group-hover:translate-x-4 transition-transform duration-500">{item}</h3>
+                        <h3 className="text-[clamp(1.5rem,3.5vw,2.5rem)] font-bold tracking-tight group-hover:translate-x-4 transition-transform duration-500 uppercase">{item}</h3>
                       </div>
                     </motion.div>
                   ))}
@@ -93,7 +97,6 @@ const ServicesSection: React.FC = () => {
                   transition={{ delay: index * 0.1, duration: 0.8 }}
                   className="group relative h-[480px] overflow-hidden rounded-sm bg-gray-50 cursor-pointer"
                 >
-                  {/* Background Image Reveal */}
                   <div className="absolute inset-0 z-0">
                     <img 
                       src={SERVICE_IMAGES[service.title]} 
@@ -103,13 +106,12 @@ const ServicesSection: React.FC = () => {
                     <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out opacity-20" />
                   </div>
 
-                  {/* Content Overlay */}
                   <div className="absolute inset-0 z-10 p-10 flex flex-col justify-between">
                     <div>
-                      <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:bg-deloitte-green group-hover:text-white transition-all duration-500 mb-8">
+                      <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:bg-deloitte-green group-hover:text-white transition-all duration-500 mb-8 text-black">
                         <IconComp size={28} className="group-hover:scale-110 transition-transform duration-500" />
                       </div>
-                      <h4 className="text-[clamp(1.2rem,2.5vw,2rem)] font-black mb-4 tracking-tighter group-hover:text-white transition-colors">
+                      <h4 className="text-[clamp(1.2rem,2.5vw,2rem)] font-black mb-4 tracking-tighter group-hover:text-white transition-colors uppercase">
                         {service.title.split(' & ').map((t, i) => (
                           <React.Fragment key={t}>
                             {t} {i === 0 && service.title.includes('&') && <br />}
@@ -127,25 +129,26 @@ const ServicesSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Top Bar Accent */}
                   <div className="absolute top-0 left-0 w-full h-1 bg-deloitte-green scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                 </motion.div>
               );
             })}
           </div>
 
-          {/* Bottom CTA Area */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mt-24 p-12 bg-black text-white rounded-sm flex flex-col md:flex-row items-center justify-between gap-12 group hover:bg-neutral-900 transition-colors duration-500"
           >
-            <div className="max-w-xl">
-              <h3 className="text-[clamp(1.5rem,3.5vw,2.5rem)] font-bold mb-4 tracking-tight">Ready to transform?</h3>
+            <div className="max-w-xl text-left">
+              <h3 className="text-[clamp(1.5rem,3.5vw,2.5rem)] font-bold mb-4 tracking-tight uppercase">Ready to transform?</h3>
               <p className="text-gray-400 font-light text-[clamp(1rem,1.4vw,1.2rem)]">Partner with our global specialists to achieve measurable results.</p>
             </div>
-            <button className="whitespace-nowrap bg-deloitte-green text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all flex items-center space-x-4 group-hover:scale-105 duration-300">
+            <button 
+              onClick={onNavigateToContact}
+              className="whitespace-nowrap bg-deloitte-green text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:brightness-110 transition-all flex items-center space-x-4 group-hover:scale-105 duration-300"
+            >
               <span>Connect with an expert</span>
             </button>
           </motion.div>

@@ -25,7 +25,11 @@ const CAREER_SLIDES = [
   }
 ];
 
-const CareerSlideshow: React.FC = () => {
+interface CareerSlideshowProps {
+  onNavigateToCareers?: () => void;
+}
+
+const CareerSlideshow: React.FC<CareerSlideshowProps> = ({ onNavigateToCareers }) => {
   const [active, setActive] = useState(0);
 
   const next = () => setActive((prev) => (prev + 1) % CAREER_SLIDES.length);
@@ -45,16 +49,19 @@ const CareerSlideshow: React.FC = () => {
               exit={{ opacity: 0, x: 30 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-deloitte-green font-bold uppercase tracking-[0.2em] text-[10px] mb-6 block">
+              <span className="text-deloitte-green font-bold uppercase tracking-[0.2em] text-[clamp(10px,1.2vw,14px)] mb-6 block">
                 {CAREER_SLIDES[active].label}
               </span>
-              <h2 className="text-5xl lg:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">
+              <h2 className="text-[clamp(2.5rem,8vw,6.5rem)] font-black mb-10 leading-[0.9] tracking-tighter uppercase">
                 {CAREER_SLIDES[active].title}
               </h2>
-              <p className="text-xl text-gray-400 mb-14 max-w-lg leading-relaxed font-light">
+              <p className="text-[clamp(1.1rem,1.8vw,1.4rem)] text-gray-400 mb-14 max-w-lg leading-relaxed font-light">
                 {CAREER_SLIDES[active].description}
               </p>
-              <button className="group flex items-center space-x-6 bg-white text-black px-10 py-5 rounded-full font-bold hover:bg-deloitte-green hover:text-white transition-all duration-300 shadow-2xl">
+              <button 
+                onClick={onNavigateToCareers}
+                className="group flex items-center space-x-6 bg-white text-black px-10 py-5 rounded-full font-bold hover:bg-deloitte-green hover:text-white transition-all duration-300 shadow-2xl"
+              >
                 <span className="text-sm uppercase tracking-widest">Explore careers</span>
                 <ArrowRight className="group-hover:translate-x-3 transition-transform duration-300" />
               </button>
@@ -99,7 +106,6 @@ const CareerSlideshow: React.FC = () => {
             </motion.div>
           </AnimatePresence>
           
-          {/* Progress Indicator Dots */}
           <div className="absolute bottom-10 right-10 flex space-x-3 z-20">
             {CAREER_SLIDES.map((_, i) => (
               <button
