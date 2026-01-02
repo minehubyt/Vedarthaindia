@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileSearch, Activity, ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { FileSearch, Activity, ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, ChevronRight, MapPin } from 'lucide-react';
 
 const AuditPage: React.FC = () => {
   const handlePrint = () => window.print();
@@ -9,7 +9,7 @@ const AuditPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* AI Smart Optimized Banner Padding */}
-      <section className="bg-black text-white pt-[clamp(100px,12vh,160px)] pb-[clamp(3rem,8vw,8rem)] overflow-hidden">
+      <section className="bg-black text-white pt-[clamp(140px,15vh,180px)] pb-[clamp(3rem,8vw,8rem)] overflow-hidden">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
           <motion.div 
             initial={{ opacity: 0, y: 30 }} 
@@ -107,6 +107,29 @@ const AuditPage: React.FC = () => {
                 </div>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* GLOBAL SERVICE CTA SECTION */}
+      <section className="bg-gray-50 py-24 border-t border-gray-100">
+        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <button onClick={() => window.location.hash = 'offices'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <MapPin className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Location</span>
+              <span className="text-xl font-black uppercase text-black">Find Nearest Office</span>
+            </button>
+            <button onClick={() => window.location.hash = 'rfp'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <FilePlus className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Proposal</span>
+              <span className="text-xl font-black uppercase text-black">Submit RFP</span>
+            </button>
+            <button onClick={() => window.location.hash = 'contact-us'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <Headphones className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Support</span>
+              <span className="text-xl font-black uppercase text-black">Contact Us</span>
+            </button>
           </div>
         </div>
       </section>

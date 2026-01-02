@@ -1,31 +1,68 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ShieldCheck, Lightbulb, AlertTriangle, Briefcase, ChevronRight } from 'lucide-react';
+import { 
+  ShieldCheck, 
+  FileText, 
+  AlertTriangle, 
+  Briefcase, 
+  Zap, 
+  Scale, 
+  Search, 
+  Leaf, 
+  ChevronRight,
+  Lightbulb,
+  Radio
+} from 'lucide-react';
 import { SERVICES } from '../constants';
 import StickyHeader from './StickyHeader';
 
-const icons: Record<string, any> = {
+const iconMap: Record<string, any> = {
   ShieldCheck,
-  Lightbulb,
+  FileText,
   AlertTriangle,
-  Briefcase
+  Briefcase,
+  Zap,
+  Scale,
+  Search,
+  Leaf,
+  Lightbulb,
+  Radio
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
   'Audit & Assurance': 'https://images.unsplash.com/photo-1454165833767-0274b27f28a0?auto=format&fit=crop&q=80&w=800',
-  'Consulting': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+  'Tax & Regulatory': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800',
   'Risk Advisory': 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800',
-  'Tax & Legal': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800',
+  'Deal Advisory': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+  'Consulting & Strategy': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+  'Legal & Governance': 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800',
+  'Forensic & Dispute': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
+  'ESG & Sustainability': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
 };
 
 interface ServicesSectionProps {
   onNavigateToContact?: () => void;
+  onServiceClick?: (path: string) => void;
 }
 
-const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToContact }) => {
+const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToContact, onServiceClick }) => {
   const { scrollYProgress } = useScroll();
   const bgTextY = useTransform(scrollYProgress, [0.4, 0.7], [0, -100]);
+
+  const resolveServicePath = (title: string) => {
+    const map: Record<string, string> = {
+      'Audit & Assurance': 'audit-assurance',
+      'Tax & Regulatory': 'tax-regulatory',
+      'Risk Advisory': 'risk-advisory',
+      'Deal Advisory': 'deal-advisory',
+      'Consulting & Strategy': 'consulting-strategy',
+      'Legal & Governance': 'legal-governance',
+      'Forensic & Dispute': 'forensic-dispute',
+      'ESG & Sustainability': 'esg-sustainability'
+    };
+    return map[title] || 'home';
+  };
 
   return (
     <section className="bg-white relative">
@@ -87,7 +124,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToContact }
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICES.map((service, index) => {
-              const IconComp = icons[service.icon];
+              // Ensure component exists to prevent React error #130
+              const IconComp = iconMap[service.icon] || ShieldCheck;
               return (
                 <motion.div
                   key={service.title}
@@ -95,11 +133,12 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateToContact }
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.8 }}
+                  onClick={() => onServiceClick?.(resolveServicePath(service.title))}
                   className="group relative h-[480px] overflow-hidden rounded-sm bg-gray-50 cursor-pointer"
                 >
                   <div className="absolute inset-0 z-0">
                     <img 
-                      src={SERVICE_IMAGES[service.title]} 
+                      src={SERVICE_IMAGES[service.title] || SERVICE_IMAGES['Audit & Assurance']} 
                       alt={service.title}
                       className="w-full h-full object-cover scale-110 group-hover:scale-100 grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-0 group-hover:opacity-40"
                     />

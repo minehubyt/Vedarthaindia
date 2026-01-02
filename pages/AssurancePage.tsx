@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, FileText, Globe, ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, CheckCircle2, MapPin } from 'lucide-react';
 
 const AssurancePage: React.FC = () => {
   const handlePrint = () => window.print();
 
   return (
     <div className="bg-white min-h-screen">
-      <section className="bg-black text-white pt-48 pb-24 relative overflow-hidden">
+      <section className="bg-black text-white pt-[140px] pb-24 relative overflow-hidden">
         <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px] relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
             <span className="text-[#86BC25] font-black uppercase tracking-[0.4em] text-[10px] mb-8 block">
@@ -127,17 +127,31 @@ const AssurancePage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-
-                {/* Deep Dive Insights */}
-                <div className="p-8 border-2 border-gray-50 rounded-3xl space-y-6">
-                  <h4 className="text-xl font-black uppercase tracking-tight">Assurance Lab</h4>
-                  <p className="text-sm text-gray-400 font-light">Explore our experimental validation techniques for emerging digital assets.</p>
-                  <button className="w-full py-4 border border-black rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all">
-                    Access Lab Briefs
-                  </button>
-                </div>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* GLOBAL SERVICE CTA SECTION */}
+      <section className="bg-gray-50 py-24 border-t border-gray-100">
+        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <button onClick={() => window.location.hash = 'offices'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <MapPin className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Location</span>
+              <span className="text-xl font-black uppercase text-black">Find Nearest Office</span>
+            </button>
+            <button onClick={() => window.location.hash = 'rfp'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <FilePlus className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Proposal</span>
+              <span className="text-xl font-black uppercase text-black">Submit RFP</span>
+            </button>
+            <button onClick={() => window.location.hash = 'contact-us'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <Headphones className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Support</span>
+              <span className="text-xl font-black uppercase text-black">Contact Us</span>
+            </button>
           </div>
         </div>
       </section>

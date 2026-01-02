@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Database, Network, ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, Code, Zap, Globe } from 'lucide-react';
+import { Cpu, Database, Network, ArrowRight, Printer, Share2, Mail, FilePlus, Headphones, Code, MapPin } from 'lucide-react';
 
 const AIEngineeringPage: React.FC = () => {
   const handlePrint = () => window.print();
@@ -9,7 +9,7 @@ const AIEngineeringPage: React.FC = () => {
   return (
     <div className="bg-[#050505] min-h-screen text-white">
       {/* Optimized Tech Hero */}
-      <section className="relative h-screen flex items-center pt-20">
+      <section className="relative h-screen flex items-center pt-[140px]">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover opacity-40 grayscale" alt="AI Tech" />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
@@ -144,6 +144,29 @@ const AIEngineeringPage: React.FC = () => {
                 </div>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* GLOBAL SERVICE CTA SECTION */}
+      <section className="bg-gray-50 py-24 border-t border-gray-100">
+        <div className="container mx-auto px-6 lg:px-[8vw] max-w-[1800px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <button onClick={() => window.location.hash = 'offices'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <MapPin className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Location</span>
+              <span className="text-xl font-black uppercase text-black">Find Nearest Office</span>
+            </button>
+            <button onClick={() => window.location.hash = 'rfp'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <FilePlus className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Proposal</span>
+              <span className="text-xl font-black uppercase text-black">Submit RFP</span>
+            </button>
+            <button onClick={() => window.location.hash = 'contact-us'} className="flex flex-col items-center p-12 bg-white border border-gray-100 rounded-3xl hover:shadow-xl transition-all group">
+              <Headphones className="text-[#86BC25] mb-6 group-hover:scale-110 transition-transform" size={40} />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Support</span>
+              <span className="text-xl font-black uppercase text-black">Contact Us</span>
+            </button>
           </div>
         </div>
       </section>

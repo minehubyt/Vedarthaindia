@@ -25,13 +25,19 @@ import CareersPage from './pages/CareersPage';
 import CaseStudiesListingPage from './pages/CaseStudiesListingPage';
 import CaseStudyDetailPage from './pages/CaseStudyDetailPage';
 import ServicesOverviewPage from './pages/ServicesOverviewPage';
-import AIEngineeringPage from './pages/AIEngineeringPage';
-import AssurancePage from './pages/AssurancePage';
-import AuditPage from './pages/AuditPage';
-import BusinessProcessSolutionsPage from './pages/BusinessProcessSolutionsPage';
-import CyberPage from './pages/CyberPage';
 
-type Page = 'home' | 'legal' | 'purpose-values' | 'contact-us' | 'rfp' | 'about' | 'insights' | 'insight-post' | 'offices' | 'office-detail' | 'reports' | 'articles' | 'podcasts' | 'careers' | 'case-studies' | 'case-study-detail' | 'services-overview' | 'ai-engineering' | 'assurance' | 'audit' | 'business-process-solutions' | 'cyber';
+// Service Pages
+import AuditAssurancePage from './pages/AuditAssurancePage';
+import TaxRegulatoryPage from './pages/TaxRegulatoryPage';
+import RiskAdvisoryPage from './pages/RiskAdvisoryPage';
+import DealAdvisoryPage from './pages/DealAdvisoryPage';
+import ConsultingStrategyPage from './pages/ConsultingStrategyPage';
+import LegalGovernancePage from './pages/LegalGovernancePage';
+import ForensicDisputePage from './pages/ForensicDisputePage';
+import ESGSustainabilityPage from './pages/ESGSustainabilityPage';
+
+type Page = 'home' | 'legal' | 'purpose-values' | 'contact-us' | 'rfp' | 'about' | 'insights' | 'insight-post' | 'offices' | 'office-detail' | 'reports' | 'articles' | 'podcasts' | 'careers' | 'case-studies' | 'case-study-detail' | 'services-overview' |
+             'audit-assurance' | 'tax-regulatory' | 'risk-advisory' | 'deal-advisory' | 'consulting-strategy' | 'legal-governance' | 'forensic-dispute' | 'esg-sustainability';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -44,7 +50,6 @@ const App: React.FC = () => {
   }, []);
 
   const navigateTo = (page: Page, params?: { id?: string }) => {
-    // Force immediate scroll reset for clean redirection
     window.scrollTo(0, 0);
     if (params?.id) {
       setSelectedOfficeId(params.id);
@@ -57,15 +62,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handlePopState = () => {
-      // Ensure we always scroll to top on hash change (redirect feel)
       window.scrollTo(0, 0);
-      
       const hash = window.location.hash.replace('#', '');
       const [path, query] = hash.split('?');
       const params = new URLSearchParams(query);
       const officeId = params.get('id');
 
-      const validPages: Page[] = ['home', 'legal', 'purpose-values', 'contact-us', 'rfp', 'about', 'insights', 'insight-post', 'offices', 'office-detail', 'reports', 'articles', 'podcasts', 'careers', 'case-studies', 'case-study-detail', 'services-overview', 'ai-engineering', 'assurance', 'audit', 'business-process-solutions', 'cyber'];
+      const validPages: Page[] = [
+        'home', 'legal', 'purpose-values', 'contact-us', 'rfp', 'about', 'insights', 'insight-post', 
+        'offices', 'office-detail', 'reports', 'articles', 'podcasts', 'careers', 'case-studies', 'case-study-detail', 'services-overview',
+        'audit-assurance', 'tax-regulatory', 'risk-advisory', 'deal-advisory', 'consulting-strategy', 'legal-governance', 'forensic-dispute', 'esg-sustainability'
+      ];
       
       if (validPages.includes(path as Page)) {
         if (path === 'office-detail' && officeId) {
@@ -88,23 +95,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white text-black selection:bg-[#86BC25] selection:text-black">
       <Header 
         onLogoClick={() => navigateTo('home')} 
-        onLinkClick={(path) => {
-          if (path === 'offices') navigateTo('offices');
-          else if (path === 'case-studies') navigateTo('case-studies');
-          else if (path === 'services-overview') navigateTo('services-overview');
-          else if (path === 'ai-engineering') navigateTo('ai-engineering');
-          else if (path === 'assurance') navigateTo('assurance');
-          else if (path === 'audit') navigateTo('audit');
-          else if (path === 'business-process-solutions') navigateTo('business-process-solutions');
-          else if (path === 'cyber') navigateTo('cyber');
-          else if (path === 'Reports') navigateTo('reports');
-          else if (path === 'Articles') navigateTo('articles');
-          else if (path === 'Podcasts') navigateTo('podcasts');
-          else if (path === 'Careers') navigateTo('careers');
-          else if (path === 'rfp') navigateTo('rfp');
-          else if (path === 'contact-us') navigateTo('contact-us');
-          else navigateTo(path as Page);
-        }}
+        onLinkClick={(path) => navigateTo(path as Page)}
       />
       
       <AnimatePresence mode="wait">
@@ -117,25 +108,23 @@ const App: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <main className="relative">
-              <div className="relative z-0">
-                <Hero />
-              </div>
+              <Hero />
               <div className="relative z-10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
                 <RevealVideoSection />
                 <FeaturedContent onNavigateToInsights={() => navigateTo('insights')} />
-                <ServicesSection onNavigateToContact={() => navigateTo('contact-us')} />
+                <ServicesSection onNavigateToContact={() => navigateTo('contact-us')} onServiceClick={(path) => navigateTo(path as Page)} />
                 <CareerSlideshow onNavigateToCareers={() => navigateTo('careers')} />
               </div>
             </main>
           </motion.div>
         ) : (
           <motion.main
-            key={currentPage === 'office-detail' ? `office-${selectedOfficeId}` : currentPage}
+            key={currentPage}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4 }}
-            className="relative z-[20] pt-0 min-h-[80vh] bg-white"
+            className="relative z-[20] min-h-[80vh] bg-white"
           >
             {currentPage === 'legal' && <LegalPage />}
             {currentPage === 'purpose-values' && <PurposeValuesPage />}
@@ -153,11 +142,16 @@ const App: React.FC = () => {
             {currentPage === 'case-studies' && <CaseStudiesListingPage onCaseClick={() => navigateTo('case-study-detail')} />}
             {currentPage === 'case-study-detail' && <CaseStudyDetailPage onBack={() => navigateTo('case-studies')} />}
             {currentPage === 'services-overview' && <ServicesOverviewPage onServiceClick={(path) => navigateTo(path as Page)} />}
-            {currentPage === 'ai-engineering' && <AIEngineeringPage />}
-            {currentPage === 'assurance' && <AssurancePage />}
-            {currentPage === 'audit' && <AuditPage />}
-            {currentPage === 'business-process-solutions' && <BusinessProcessSolutionsPage onCaseClick={() => navigateTo('case-study-detail')} />}
-            {currentPage === 'cyber' && <CyberPage onCaseClick={() => navigateTo('case-study-detail')} />}
+            
+            {/* 8 NEW HIGH-END SERVICE PAGES */}
+            {currentPage === 'audit-assurance' && <AuditAssurancePage />}
+            {currentPage === 'tax-regulatory' && <TaxRegulatoryPage />}
+            {currentPage === 'risk-advisory' && <RiskAdvisoryPage />}
+            {currentPage === 'deal-advisory' && <DealAdvisoryPage />}
+            {currentPage === 'consulting-strategy' && <ConsultingStrategyPage />}
+            {currentPage === 'legal-governance' && <LegalGovernancePage />}
+            {currentPage === 'forensic-dispute' && <ForensicDisputePage />}
+            {currentPage === 'esg-sustainability' && <ESGSustainabilityPage />}
           </motion.main>
         )}
       </AnimatePresence>
@@ -169,7 +163,6 @@ const App: React.FC = () => {
         onRFPClick={() => navigateTo('rfp')}
         onOfficesClick={() => navigateTo('offices')}
       />
-      
       <AIAssistant />
     </div>
   );
